@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".activity.PoliceInforartionDetailActivity">
+
+    <include
+        android:id="@+id/include_title"
+        layout="@layout/include_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_25">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="警情编号: "
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/dp_22"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_jqbh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_25"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:minLines="2"
+                    android:text=""
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/dp_22"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_radius_yellow_5"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp_14"
+                    android:paddingTop="@dimen/dp_7"
+                    android:paddingRight="@dimen/dp_14"
+                    android:paddingBottom="@dimen/dp_7"
+                    android:text="待确认"
+                    android:textColor="#E69022"
+                    android:textSize="@dimen/sp_22" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_10"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_25"
+                android:paddingRight="@dimen/dp_25">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="警情时间:"
+                    android:textColor="@color/text_color_999999"
+                    android:textSize="@dimen/sp_22" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/sp_22" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_25"
+                android:paddingRight="@dimen/dp_25">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="警情地点:"
+                    android:textColor="@color/text_color_999999"
+                    android:textSize="@dimen/sp_22" />
+
+                <TextView
+                    android:id="@+id/tv_loc"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:drawableRight="@drawable/icon_loc"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:textColor=" #66A3FF "
+                    android:textSize="@dimen/sp_22" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_25"
+                android:paddingRight="@dimen/dp_25">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="报警人员:"
+                    android:textColor="@color/text_color_999999"
+                    android:textSize="@dimen/sp_22" />
+
+                <TextView
+                    android:id="@+id/tv_bjr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/sp_22" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_25"
+                android:paddingRight="@dimen/dp_25">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="报警电话:"
+                    android:textColor="@color/text_color_999999"
+                    android:textSize="@dimen/sp_22" />
+
+
+                <TextView
+                    android:id="@+id/tv_bjdh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:drawableRight="@drawable/iocn_call_phone"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:textColor=" #66A3FF "
+                    android:textSize="@dimen/sp_22" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_25"
+                android:paddingRight="@dimen/dp_25">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="警情类别:"
+                    android:textColor="@color/text_color_999999"
+                    android:textSize="@dimen/sp_22" />
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/sp_22" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_25"
+                android:paddingRight="@dimen/dp_25">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出警单位:"
+                    android:textColor="@color/text_color_999999"
+                    android:textSize="@dimen/sp_22" />
+
+                <TextView
+                    android:id="@+id/tv_cjdw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/sp_22" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_25"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_25"
+                android:paddingTop="@dimen/dp_25"
+                android:paddingRight="@dimen/dp_25">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="报警内容:"
+                    android:textColor="@color/text_color_999999"
+                    android:textSize="@dimen/sp_22" />
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/sp_22" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_10"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:id="@+id/ll_print"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_25"
+                    android:text="打印文书"
+                    android:textColor=" #333C87 "
+                    android:textSize="@dimen/sp_22" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/jwt_bg_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_hui_zhi_dan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_25"
+                        android:background="@drawable/bg_radius_yellow_dd960f"
+                        android:drawableLeft="@drawable/icon_dayin"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:padding="@dimen/dp_10"
+                        android:text="接处警告知回执单"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_22" />
+
+                    <TextView
+                        android:id="@+id/tv_chu_fa_dan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_25"
+                        android:background="@drawable/bg_radius_blue_5d8df6"
+                        android:drawableLeft="@drawable/icon_dayin"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:padding="@dimen/dp_10"
+                        android:text="处罚决定书"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_22" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_60"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_color"
+            android:gravity="center"
+            android:padding="@dimen/dp_20"
+            android:text="反馈"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_25" />
+
+
+        <Button
+            android:id="@+id/btn_look"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_color"
+            android:gravity="center"
+            android:padding="@dimen/dp_20"
+            android:text="查看"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_25"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+</LinearLayout>

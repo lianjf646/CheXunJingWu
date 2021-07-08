@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:background="#80000000"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/dp_5"
+        android:lineSpacingMultiplier="1.5"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_17" />
+</LinearLayout>

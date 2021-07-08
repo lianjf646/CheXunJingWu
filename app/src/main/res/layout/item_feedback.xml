@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_25"
+    tools:ignore="MissingConstraints">
+
+    <TextView
+        android:id="@+id/img"
+        android:layout_width="@dimen/dp_62"
+        android:layout_height="@dimen/dp_62"
+        android:background="@drawable/bg_round_green"
+        android:gravity="center"
+        android:text="5"
+        android:textColor="@color/text_color_333333"
+        android:textSize="@dimen/sp_20"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="反馈"
+        android:textColor="@color/text_color_333333"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintEnd_toEndOf="@id/img"
+        app:layout_constraintStart_toStartOf="@id/img"
+        app:layout_constraintTop_toBottomOf="@id/img" />
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_16"
+        app:layout_constraintLeft_toRightOf="@id/img"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/tv_callback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="反馈警员：王丽达"
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fksj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈时间：2019-07-04 16:01:20"
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fwsj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="发生时间：2019-07-04 16:01:20"
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fsdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="发生地点："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fscs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="发生场所："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_cjjg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="处警结果:"
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fkdbh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈单编号：2019-07-04 16:01:20"
+            android:textColor="@color/text_color_333333"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_fkbjr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈报警人：2019-07-04 16:01:20"
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fkrys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="处警警员:"
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fkrzjh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈报警人证件号: "
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_bjrdh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈报警电话："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fkjqlb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈警情类别："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fkjqlx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈警情类型："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fkjqxl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈警情细类："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_cdrs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="出动人数："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_cdcs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="出动车船数："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <TextView
+            android:id="@+id/tv_fknr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:text="反馈内容："
+            android:textColor="@color/text_color_333333"
+            android:textSize="@dimen/sp_20"/>
+
+        <LinearLayout
+            android:id="@+id/ll_xian_chang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_xzzp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="现场照片："
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_20"/>
+
+            <ImageView
+                android:id="@+id/img_site_1"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/img_site_2"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/img_site_3"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_xian_yi_ren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="嫌疑人   ："
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_20"/>
+
+            <ImageView
+                android:id="@+id/img_ren_1"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/img_ren_2"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/img_ren_3"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_qi_ta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="其他照片："
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_20"/>
+
+            <ImageView
+                android:id="@+id/img_other_1"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/img_other_2"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/img_other_3"
+                android:layout_width="@dimen/dp_95"
+                android:layout_height="@dimen/dp_110"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:scaleType="fitXY" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

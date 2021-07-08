@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_15"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_heard_icon"
+            android:layout_width="@dimen/dp_150"
+            android:scaleType="matrix"
+            android:layout_height="@dimen/dp_200" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#374491"
+            android:gravity="center"
+            android:text="时间"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_15" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/dp_10"
+        android:src="@drawable/vs_duibi" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:visibility="visible" />
+
+
+</LinearLayout>

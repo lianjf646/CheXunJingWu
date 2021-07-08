@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_et_radius_10_write"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/chb_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:button="@null"
+        android:checked="true"
+        android:drawableRight="@drawable/chb_right_sj"
+        android:padding="@dimen/dp_15"
+
+        android:text="标题"
+        android:textColor="#343C88"
+        android:textSize="@dimen/sp_24" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffe0e0e0" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:padding="@dimen/dp_15"
+        android:text="n内容"
+        android:textColor="#000000" />
+</LinearLayout>

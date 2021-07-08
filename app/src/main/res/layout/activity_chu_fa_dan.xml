@@ -1,0 +1,1233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ChuFaDanActivity">
+
+    <include
+        android:id="@+id/include_title"
+        layout="@layout/include_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_jqbh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:text="警情编号:"
+                android:textColor="#0DCFFF"
+                android:textSize="@dimen/text_size_chufa" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名/单位:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_name_company"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_name_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="@dimen/dp_25"-->
+            <!--                android:layout_marginTop="@dimen/dp_10"-->
+            <!--                android:layout_marginRight="@dimen/dp_25"-->
+            <!--                android:layout_marginBottom="@dimen/dp_10"-->
+            <!--                android:gravity="center"-->
+            <!--                android:orientation="horizontal">-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="证件种类:"-->
+            <!--                    android:textColor="@color/text_color_333333"-->
+            <!--                    android:textSize="@dimen/text_size_chufa" />-->
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/et_id_type"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginLeft="@dimen/dp_10"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:background="@drawable/conner_stoken_no"-->
+            <!--                    android:maxLength="6"-->
+            <!--                    android:paddingLeft="@dimen/dp_5"-->
+            <!--                    android:paddingTop="@dimen/dp_5"-->
+            <!--                    android:paddingRight="@dimen/dp_5"-->
+            <!--                    android:paddingBottom="@dimen/dp_5"-->
+            <!--                    android:singleLine="true"-->
+            <!--                    android:textColor="@color/text_color_333333"-->
+            <!--                    android:textSize="@dimen/text_size_chufa" />-->
+
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/iv_id_type"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginLeft="@dimen/dp_5"-->
+            <!--                    android:layout_marginRight="@dimen/dp_10"-->
+            <!--                    android:src="@drawable/shuru_wancheng"-->
+            <!--                    android:visibility="invisible" />-->
+            <!--            </LinearLayout>-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="证件及号码:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_id_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_id_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <RadioGroup
+                    android:id="@+id/rg_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/rbn_nan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableLeft="@drawable/rbn_yuan"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text="男"
+                        android:textColor="@drawable/rbn_text_color"
+                        android:textSize="@dimen/text_size_chufa" />
+
+                    <RadioButton
+                        android:id="@+id/rbn_nv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/rbn_yuan"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text="女"
+                        android:textColor="@drawable/rbn_text_color"
+                        android:textSize="@dimen/text_size_chufa" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生日期:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <TextView
+                    android:id="@+id/tv_date_of_birth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:drawableRight="@drawable/ic_date"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_date_of_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_age"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="现/单位住址:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_company_loc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_company_loc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查明事件:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_find_out_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_find_out_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="证据:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_evidence"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_evidence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="根据法规:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_statute"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_statute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="处罚结果:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_punish_result"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_punish_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="执行方式:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <RadioGroup
+                    android:id="@+id/rg_zx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbn_zx_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:button="@null"
+                        android:checked="true"
+                        android:drawableLeft="@drawable/rbn_yuan"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="当场训诫"
+                        android:textColor="@drawable/rbn_text_color"
+
+                        android:textSize="@dimen/text_size_chufa" />
+
+                    <RadioButton
+                        android:id="@+id/rbn_zx_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:button="@null"
+
+                        android:drawableLeft="@drawable/rbn_yuan"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="当场收缴罚款"
+                        android:textColor="@drawable/rbn_text_color"
+                        android:textSize="@dimen/text_size_chufa" />
+
+                    <RadioButton
+                        android:id="@+id/rbn_zx_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/rbn_yuan"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="银行缴费"
+                        android:textColor="@drawable/rbn_text_color"
+                        android:textSize="@dimen/text_size_chufa" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="缴费银行:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/dp_5">
+
+                    <EditText
+                        android:id="@+id/et_bank"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:paddingLeft="@dimen/dp_10"
+                        android:paddingTop="@dimen/dp_5"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:textColor="@color/text_color_333333"
+                        android:textColorHint="#D2D2D2"
+                        android:textSize="@dimen/text_size_chufa" />
+
+                    <ImageView
+                        android:id="@+id/iv_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:src="@drawable/icon_num" />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/iv_bank1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请复议机构:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/dp_5">
+                    <!--&lt;!&ndash;                    et_fuyi_jigou&ndash;&gt;-->
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/et_fuyi_jigou"-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:background="@null"-->
+                    <!--                        android:paddingLeft="@dimen/dp_5"-->
+                    <!--                        android:paddingTop="@dimen/dp_5"-->
+                    <!--                        android:paddingRight="@dimen/dp_5"-->
+                    <!--                        android:paddingBottom="@dimen/dp_5"-->
+                    <!--                        android:textColor="@color/text_color_333333"-->
+                    <!--                        android:textCursorDrawable="@drawable/et_hint_color"-->
+                    <!--                        android:textSize="@dimen/text_size_chufa" />-->
+
+                    <EditText
+                        android:id="@+id/et_fuyi_jigou"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_5"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:textColor="@color/text_color_333333"
+                        android:textSize="@dimen/text_size_chufa" />
+
+                    <ImageView
+                        android:id="@+id/iv_fuyi_jigou"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:src="@drawable/icon_num" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_fuyi_jigou1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请诉讼法院:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/dp_5">
+                    <!--&lt;!&ndash;                    et_fuyi_jigou&ndash;&gt;-->
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/et_fuyi_jigou"-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:background="@null"-->
+                    <!--                        android:paddingLeft="@dimen/dp_5"-->
+                    <!--                        android:paddingTop="@dimen/dp_5"-->
+                    <!--                        android:paddingRight="@dimen/dp_5"-->
+                    <!--                        android:paddingBottom="@dimen/dp_5"-->
+                    <!--                        android:textColor="@color/text_color_333333"-->
+                    <!--                        android:textCursorDrawable="@drawable/et_hint_color"-->
+                    <!--                        android:textSize="@dimen/text_size_chufa" />-->
+
+                    <EditText
+                        android:id="@+id/et_fayuan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_5"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:textColor="@color/text_color_333333"
+                        android:textSize="@dimen/text_size_chufa" />
+
+                    <ImageView
+                        android:id="@+id/iv_fayuan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:src="@drawable/icon_num" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_fayuan1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="处罚地点:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_chafa_loc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_chafa_loc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="处罚时间:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <TextView
+                    android:id="@+id/tv_chufa_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:drawableRight="@drawable/ic_date"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_chufa_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="办案民警:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/dp_5">
+                    <!--&lt;!&ndash;                    et_fuyi_jigou&ndash;&gt;-->
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/et_fuyi_jigou"-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:background="@null"-->
+                    <!--                        android:paddingLeft="@dimen/dp_5"-->
+                    <!--                        android:paddingTop="@dimen/dp_5"-->
+                    <!--                        android:paddingRight="@dimen/dp_5"-->
+                    <!--                        android:paddingBottom="@dimen/dp_5"-->
+                    <!--                        android:textColor="@color/text_color_333333"-->
+                    <!--                        android:textCursorDrawable="@drawable/et_hint_color"-->
+                    <!--                        android:textSize="@dimen/text_size_chufa" />-->
+
+                    <EditText
+                        android:id="@+id/et_police_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:paddingLeft="@dimen/dp_5"
+                        android:paddingTop="@dimen/dp_5"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:textColor="@color/text_color_333333"
+                        android:textSize="@dimen/text_size_chufa" />
+
+                    <ImageView
+                        android:id="@+id/iv_bamj"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_5"
+                        android:src="@drawable/icon_num" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_police_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="被处罚人:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_bcfr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:maxLength="5"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_bcfr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="法定代表人:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_fddbr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:maxLength="5"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_fddbr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/jwt_bg_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收缴物品清单:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <EditText
+                    android:id="@+id/et_sjwpqd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_sjwpqd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_25"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_25"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收缴时间:"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <TextView
+                    android:id="@+id/tv_sjsj"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/conner_stoken_no"
+                    android:drawableRight="@drawable/ic_date"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_5"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_5"
+                    android:textColor="@color/text_color_333333"
+                    android:textSize="@dimen/text_size_chufa" />
+
+                <ImageView
+                    android:id="@+id/iv_sjsj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:src="@drawable/shuru_wancheng"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@drawable/btn_bg_color"
+        android:gravity="center"
+        android:padding="@dimen/dp_20"
+        android:text="确认打印"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_24" />
+</LinearLayout>

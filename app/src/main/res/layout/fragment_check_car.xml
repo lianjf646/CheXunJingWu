@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_25"
+        android:background="@drawable/bg_radius_write_5"
+        android:gravity="center"
+        android:hint="搜索"
+        android:imeOptions="actionSearch"
+        android:padding="@dimen/dp_25"
+        android:singleLine="true"
+        android:textSize="@dimen/dp_23"
+        tools:ignore="MissingConstraints" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/jwt_bg_color"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinner"
+            style="@style/XSpinnerStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:layout_marginRight="@dimen/dp_25"
+            android:background="@color/white"
+            android:drawableRight="@drawable/chb_right_sj" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_25"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        android:visibility="gone">
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cphm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_22" />
+
+            <TextView
+                android:id="@+id/cpzl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_22" />
+
+            <TextView
+                android:id="@+id/clpp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_22" />
+
+            <TextView
+                android:id="@+id/ys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_22" />
+
+            <TextView
+                android:id="@+id/cjh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_22" />
+
+            <TextView
+                android:id="@+id/xm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_22" />
+
+            <TextView
+                android:id="@+id/sfzh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="@color/text_color_333333"
+                android:textSize="@dimen/sp_22" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/lvbei"
+            android:gravity="center"
+            android:minEms="4"
+            android:text="正常"
+            android:textColor="@color/green"
+            android:textSize="@dimen/sp_25"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/ll_state_car"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_alignParentRight="true"-->
+    <!--            android:layout_marginTop="46dp"-->
+    <!--            android:layout_marginEnd="47dp"-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:visibility="gone">-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/tv_zc"-->
+    <!--                android:layout_width="100dp"-->
+    <!--                android:layout_height="39dp"-->
+    <!--                android:background="@drawable/lvbei"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="正常"-->
+    <!--                android:textColor="@color/text_color_333333"-->
+    <!--                android:textSize="16sp"-->
+    <!--                android:visibility="gone" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/tv_wf"-->
+    <!--                android:layout_width="100dp"-->
+    <!--                android:layout_height="39dp"-->
+    <!--                android:background="@drawable/hongbei"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="在逃人员"-->
+    <!--                android:textColor="@color/text_color_333333"-->
+    <!--                android:textSize="14sp"-->
+    <!--                android:visibility="gone" />-->
+    <!--        </LinearLayout>-->
+    <TextView
+        android:id="@+id/tv_not_data"
+        style="@style/text_not_data" />
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_time_out_car"-->
+    <!--            style="@style/timeout_network"-->
+    <!--            android:drawableTop="@drawable/timeout_network"-->
+    <!--            android:text="查询超时"-->
+    <!--            android:visibility="gone" />-->
+
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_car"-->
+    <!--            style="@style/timeout_network"-->
+    <!--            android:drawableTop="@drawable/no_car"-->
+    <!--            android:text="暂无匹配车辆"-->
+    <!--            android:visibility="gone" />-->
+    <!--    </RelativeLayout>-->
+</LinearLayout>

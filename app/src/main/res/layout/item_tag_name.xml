@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_tv_seler_blue2"
+    android:drawableRight="@drawable/icon_close_guanbi"
+    android:ellipsize="marquee"
+    android:gravity="center"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingTop="@dimen/dp_5"
+    android:paddingRight="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_5"
+    android:singleLine="true"
+    android:text="123123"
+    android:textColor="#3D4E9C"
+    android:textSize="@dimen/sp_22" />
+
+

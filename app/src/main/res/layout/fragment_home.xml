@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_410"
+        android:background="@drawable/bg_home_heard">
+
+
+        <TextView
+            android:id="@+id/tv_caron"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="车牌:"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/sp_30"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_25"
+            android:background="@drawable/bg_radius_lan_5"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:text="巡逻车状态"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/sp_20"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linear_qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/dp_25"
+            android:background="@drawable/bg_radius_10"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp_25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:src="@drawable/qr_code" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="二维码扫描"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/sp_22"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="扫描车机上的二维码进行签到"
+                    android:textColor="#595959"
+                    android:textSize="@dimen/sp_24" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:text="常用工作"
+            android:textColor="#AEB7C8"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_25"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_mine_early_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/yujing"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="我的预警"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20" />
+
+        <Button
+            android:id="@+id/btn_nearby_police_forces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/jingli"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="周边警力"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20" />
+
+        <Button
+            android:id="@+id/btn_jiechujing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/jiechujing"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="接处警"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_zhiling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/zhiling"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="指令通知"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_check"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="核查"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20" />
+
+        <Button
+
+            android:id="@+id/btn_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/setting"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="后台设置"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20" />
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_check"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="指令通知"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20"
+            android:visibility="invisible" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_check"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="指令通知"
+            android:textColor="#162D5A"
+            android:textSize="@dimen/sp_20"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+</LinearLayout>

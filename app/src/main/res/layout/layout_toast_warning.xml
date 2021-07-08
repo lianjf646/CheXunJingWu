@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_toast_red1"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_20"
+        android:src="@drawable/icon_network_e" />
+
+    <TextView
+        android:id="@+id/toast_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_20"
+        android:text="反馈成功"
+        android:paddingLeft="@dimen/dp_60"
+        android:paddingRight="@dimen/dp_60"
+        android:textColor="#D44949"
+        android:textSize="@dimen/sp_22" />
+
+</LinearLayout>

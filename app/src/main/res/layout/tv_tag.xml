@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txt"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/conner_stoken_item_callback"
+    android:padding="@dimen/dp_6"
+    android:textColor="@color/color_0FA8CE"
+    android:textSize="@dimen/sp_20" />

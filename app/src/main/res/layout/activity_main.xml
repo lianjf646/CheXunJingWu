@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_yinying" />
+
+    <RadioGroup
+
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbn_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/rbn_home"
+            android:drawablePadding="5dp"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/dp_10"
+            android:text="首页"
+            android:textColor="@drawable/rbn_text_color"
+            android:textSize="@dimen/sp_22" />
+
+        <RadioButton
+            android:id="@+id/rbn_mine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/rbn_mine"
+            android:drawablePadding="5dp"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/dp_10"
+            android:text="我的"
+            android:textColor="@drawable/rbn_text_color"
+            android:textSize="@dimen/sp_22" />
+
+    </RadioGroup>
+</LinearLayout>

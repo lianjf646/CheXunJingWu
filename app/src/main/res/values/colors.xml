@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#374491</color>
+    <color name="colorPrimaryDark">#374491</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="navigationBarColor">#00000000</color>
+    <color name="colorPrimaryDarkTrans">#CCf57257</color>
+    <color name="jwt_bg_color">#fff5f5f8</color>
+    <color name="text_color_333333">#333333</color>
+    <color name="text_color_999999">#999999</color>
+
+    <color name="text_color_E69022">#E69022</color>
+    <color name="text_color_E5D8DF6">#5D8DF6</color>
+    <color name="text_color_5EBB4F">#5EBB4F</color>
+
+    <color name="t">#00000000</color>
+    <color name="red">#F83838</color>
+    <color name="green">#23DA30</color>
+    <color name="color_0FA8CE">#0FA8CE</color>
+    <color name="color_500FA8CE">#500FA8CE</color>
+    <color name="app_yemian_bg">#F5F5F8</color>
+
+
+</resources>

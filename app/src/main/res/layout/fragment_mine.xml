@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mine_bg_yuanhu"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/heard_icon" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="姓名"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_30" />
+
+        <TextView
+            android:id="@+id/tv_jj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="平乐县公安局"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_20"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_jh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="警号：347583249"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_22" />
+
+
+        <Button
+            android:id="@+id/btn_out_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@drawable/bg_radius_10"
+            android:padding="@dimen/dp_20"
+            android:text="退出登录"
+            android:textColor="#152D59"
+            android:textSize="@dimen/sp_25" />
+    </LinearLayout>
+
+
+</LinearLayout>
