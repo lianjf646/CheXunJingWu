@@ -31,7 +31,6 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
         super.onViewCreated(view, savedInstanceState)
         bind.linearQrcode.setOnClickListener(object : OnClickViewListener() {
             override fun onClickSuc(v: View?) {
-
                 var intent = Intent(activity, SaoMaActivity::class.java)
                 getSaoMaData.launch(intent);
 
@@ -72,9 +71,6 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
                 if (TextUtils.isEmpty(imei)) return
                 val intent = Intent(context, InstructionsActivity::class.java)
                 startActivity(intent)
-                //                String topic = "Ret/print/Send/" + "R624422009130189";
-//                String ddd = "ddddddddddddd";
-//                SmartMqtt.getInstance().sendData(ddd.getBytes(), topic);
             }
         })
 
@@ -84,6 +80,23 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
                 startActivity(intent)
             }
 
+        })
+
+        bind.btnNearbyPoliceForces.setOnClickListener(object : OnClickViewListener() {
+            override fun onClickSuc(v: View?) {
+//                if (government.isEmpty()) return
+//                val intent = Intent()
+//                if (BuildConfig.FLAVOR.equals("互联网")) {
+//                    intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
+//                } else {
+//                    intent.setClass(activity, NearbyPoliceForcesWuHaiActivity::class.java)
+//                }
+//                intent.putExtra("government", government)
+//                startActivity(intent)
+                var intent = Intent()
+                intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
+                startActivity(intent)
+            }
         })
 
         var idCard = userInfo?.idCard;
@@ -104,14 +117,21 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
         mViewModel.signStatusLiveData.observe(this, {
             if (it.httpResponseState == HttpResponseState.STATE_SUCCESS) {
                 var signStatusResponse = it?.httpResponse?.data;
-                if (signStatusResponse == null) return@observe
-                bind.tvCaron.text = signStatusResponse?.carNo
+                if (signStatusResponse == null) {
+                    imei = "";
+                    DataHelper.imei = "";
+                    bind.tvCaron.text = "车牌:"
+                    return@observe
+                }
+
                 if (signStatusResponse?.sign_identification.equals("qd")) {
                     bind.tvState.text = "巡逻车已连接"
+                    bind.tvCaron.text = "车牌:${signStatusResponse?.carNo}"
                     imei = signStatusResponse?.imei;
                     DataHelper.putData(DataHelper.carInfo, signStatusResponse)
                     DataHelper.imei = imei;
                 } else {
+                    bind.tvCaron.text = "车牌:"
                     bind.tvState.text = "巡逻车未连接"
                     DataHelper.putData(DataHelper.carInfo, signStatusResponse)
                     imei = "";

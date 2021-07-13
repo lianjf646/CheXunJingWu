@@ -108,7 +108,13 @@
         <activity android:name=".ui.activity.InstructionsFeedBackActivity" />
         <activity android:name=".ui.activity.PersonnelInfoActivity" />
         <activity android:name=".ui.activity.CarInfoActivity" />
+        <activity android:name=".ui.activity.NearbyPoliceForcesActivity" />
+        <activity android:name=".ui.activity.ChuFaDanActivity" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="1fshgjzrBTtzqKAeH0uPiOPFuKqDvR50" />
     </application>
 </manifest>

@@ -14,8 +14,13 @@ import com.example.chexunjingwu.R
 import com.example.chexunjingwu.base.BaseActivity
 import com.example.chexunjingwu.databinding.ActivityMainBinding
 import com.example.chexunjingwu.http.AndroidMqttClient
+import com.example.chexunjingwu.http.response.HomeLoginResponse
+import com.example.chexunjingwu.tools.DataHelper
 import com.example.chexunjingwu.ui.fragment.HomeFragment
 import com.example.chexunjingwu.ui.fragment.MineFragment
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity() {
     private val bind: ActivityMainBinding by binding();
@@ -67,8 +72,20 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-        var imei = "R624422009130189";
-        AndroidMqttClient.connect(imei);
+
+        val mExecutor = Executors.newSingleThreadScheduledExecutor()
+        var mFuture: ScheduledFuture<*>? = null
+        mFuture = mExecutor.scheduleWithFixedDelay({
+            //定时任务
+            if (!DataHelper.imei.isNullOrEmpty()) {
+                var userBean =
+                    DataHelper.getData(DataHelper.loginUserInfo) as HomeLoginResponse.Data.Data.User;
+                AndroidMqttClient.connect(DataHelper.imei!!, userBean.pcard);
+                mFuture?.cancel(true)
+            }
+
+        }, 1, 3, TimeUnit.SECONDS)
+        mFuture.run {}
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

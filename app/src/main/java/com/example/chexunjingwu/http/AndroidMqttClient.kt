@@ -17,10 +17,8 @@ import com.example.chexunjingwu.http.mqttresponse.MqttNoticeBean
 import com.example.chexunjingwu.http.mqttresponse.MqttPersonWarningBean
 import com.example.chexunjingwu.http.response.GetJqListResponse
 import com.example.chexunjingwu.tools.showError
-import com.example.chexunjingwu.ui.activity.CarInfoActivity
-import com.example.chexunjingwu.ui.activity.InstructionsActivity
-import com.example.chexunjingwu.ui.activity.LoginActivity
-import com.example.chexunjingwu.ui.activity.PersonnelInfoActivity
+import com.example.chexunjingwu.tools.showNormal
+import com.example.chexunjingwu.ui.activity.*
 import com.google.gson.Gson
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
@@ -31,10 +29,13 @@ object AndroidMqttClient {
     private const val TAG = "AndroidMqttClient"
     private var mqttClient: MqttAndroidClient
     val serverURI = BuildConfig.TCP_MQTT
-    var personA: String? = null  //人像预警
-    var PAlarm: String? = null //处警
-    var car: String? = null //车预警
-    var noticeSend: String? = null //指令通知
+    var personA: String? = null      //人像预警
+    var PAlarm: String? = null       //处警
+    var car: String? = null          //车预警
+    var noticeSend: String? = null   //指令通知
+    var printState: String? = null   //打印状态
+    var jqZcInfo: String? = null     //警情暂存
+
 
     init {
         var kotlin_client = UUID.randomUUID().toString();
@@ -54,6 +55,7 @@ object AndroidMqttClient {
                             bean.portrait_id!!
                         )
                     }
+
                     car -> {
                         var bean =
                             Gson().fromJson(message.toString(), MqttCarWarningBean::class.java)
@@ -63,21 +65,31 @@ object AndroidMqttClient {
                             bean.comparison_id!!
                         )
                     }
+
                     noticeSend -> {
                         var bean =
                             Gson().fromJson(message.toString(), MqttNoticeBean::class.java);
                         sendNotice(bean.bt!!, bean.nr!!, bean.notice_id!!);
                     }
 
+                    PAlarm -> {
+                        var bean = Gson().fromJson(
+                            message.toString(),
+                            GetJqListResponse.ListBean::class.java
+                        )
+                        sendYuJing(bean.bjlbmc, bean.bjnr, bean);
+                    }
+
+                    printState -> {
+                        showNormal(message.toString())
+                    }
+
+                    jqZcInfo -> {
+                        sendNotiZc(message.toString());
+                    }
 
 
                 }
-
-//                var bean = Gson().fromJson(
-//                    message.toString(),
-//                    GetJqListResponse.ListBean::class.java
-//                )
-//                sendYuJing(bean.bjlbmc, bean.bjnr, bean);
 
             }
 
@@ -94,12 +106,12 @@ object AndroidMqttClient {
     /**
      *连接 MQTT 服务器
      */
-    fun connect(imei: String) {
+    fun connect(imei: String, pcard: String) {
         val options = MqttConnectOptions()
         mqttClient.connect(options, null, object : IMqttActionListener {
             override fun onSuccess(asyncActionToken: IMqttToken?) {
                 Log.d(TAG, "Connection success")
-                subscribe(imei)
+                subscribe(imei, pcard)
             }
 
             override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
@@ -112,16 +124,18 @@ object AndroidMqttClient {
     /**
      * 创建 MQTT 订阅
      */
-    fun subscribe(imei: String) {
+    fun subscribe(imei: String, pcard: String) {
         if (mqttClient == null || !mqttClient.isConnected()) {
             return
         }
         personA = "Ret/verificationResults/personA/${imei}" //人脸预警
-        PAlarm = "Ret/PAlarm/Send/${imei}" //处警
-        car = "Ret/verificationResults/car/${imei}" //车预警
-        noticeSend = "Ret/Notice/Send/${imei}"//指令通知
+        PAlarm = "Ret/PAlarm/Send/${imei}"                  //处警
+        car = "Ret/verificationResults/car/${imei}"         //车预警
+        noticeSend = "Ret/Notice/Send/${imei}"              //指令通知
+        jqZcInfo = "Jq/zc/info/$imei/$pcard"                //警情暂存
+        printState = "PrintState/get/$imei/$pcard";         //打印机状态
 
-        var topic = arrayOf(car, PAlarm, personA, noticeSend)
+        var topic = arrayOf(car, PAlarm, personA, noticeSend, jqZcInfo, jqZcInfo)
         var qos = IntArray(topic.size);
         for (i in topic.indices) {
             qos[i] = 1
@@ -152,7 +166,6 @@ object AndroidMqttClient {
                 Log.d(TAG, "Failed to unsubscribe $topic")
             }
         })
-
     }
 
     /**
@@ -198,8 +211,8 @@ object AndroidMqttClient {
     ) {
         val hangIntent = Intent()
         hangIntent.flags = Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-        hangIntent.setClass(App.app, LoginActivity::class.java)
-        hangIntent.putExtra("getjqlistresponse", bean)
+        hangIntent.setClass(App.app, PoliceInforartionDetailActivity::class.java)
+        hangIntent.putExtra("getjqlistresponse.resultbean.listbean", bean)
         receiveMqttInfo(title, content, hangIntent, 6)
     }
 
@@ -229,7 +242,15 @@ object AndroidMqttClient {
         receiveMqttInfo(title, content, hangIntent, 5)
     }
 
-    var a = 1
+    private fun sendNotiZc(byId: String) {
+        var hangIntent = Intent();
+        hangIntent.flags = Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+        hangIntent.setClass(App.app, JingQingFeedBackActivity::class.java);
+        hangIntent.putExtra("byId", byId);
+        receiveMqttInfo("反馈信息", "你有一条来自车机的反馈信息，请您及时处理", hangIntent, 4);
+    }
+
+    private var a = 1
 
     /**
      * 接受mqtt消息
@@ -275,7 +296,5 @@ object AndroidMqttClient {
 //        notificationManager.notify(String.valueOf(notifyId++), notifyId++, notification);
         notificationManager.notify(type.toString(), type, notification)
     }
-
-
 }
 

@@ -8,12 +8,18 @@ import com.dylanc.viewbinding.binding
 import com.example.chexunjingwu.R
 import com.example.chexunjingwu.base.BaseViewModelActivity
 import com.example.chexunjingwu.databinding.ActivityPoliceInforartionDetailBinding
+import com.example.chexunjingwu.http.AndroidMqttClient
+import com.example.chexunjingwu.http.mqttresponse.HuiZhiBean
+import com.example.chexunjingwu.http.mqttresponse.PrintRquest
 import com.example.chexunjingwu.http.request.JqChangeStateRequest
 import com.example.chexunjingwu.http.response.GetJqListResponse
 import com.example.chexunjingwu.http.response.HomeLoginResponse
 import com.example.chexunjingwu.tools.DataHelper
 import com.example.chexunjingwu.tools.OnClickViewListener
 import com.example.chexunjingwu.viewmodel.PoliceInforartionDetailViewModel
+import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PoliceInforartionDetailActivity : BaseViewModelActivity<PoliceInforartionDetailViewModel>() {
     private val bind: ActivityPoliceInforartionDetailBinding by binding();
@@ -34,7 +40,8 @@ class PoliceInforartionDetailActivity : BaseViewModelActivity<PoliceInforartionD
                 finish()
             }
         })
-        bean = (intent.getSerializableExtra("getjqlistresponse.resultbean.listbean") as GetJqListResponse.ListBean?)!!
+        bean =
+            (intent.getSerializableExtra("getjqlistresponse.resultbean.listbean") as GetJqListResponse.ListBean?)!!
 
         userBean = DataHelper.getData(DataHelper.loginUserInfo) as HomeLoginResponse.Data.Data.User;
         bind.tvJqbh.setText(bean?.jqbh)
@@ -152,6 +159,38 @@ class PoliceInforartionDetailActivity : BaseViewModelActivity<PoliceInforartionD
                 startActivity(intent)
             }
 
+        })
+
+        bind.tvHuiZhiDan.setOnClickListener(object : OnClickViewListener() {
+            override fun onClickSuc(v: View?) {
+                var simpleDateFormat = SimpleDateFormat("yyyy-MM-dd") //
+                var date = Date(System.currentTimeMillis())
+                var huiZhiBean = HuiZhiBean()
+                huiZhiBean.bao_an_shi_jian = bean.bjsj.replace("/", "-").substring(0, 10)
+                huiZhiBean.neirong = bean.bjnr
+                huiZhiBean.xingming = bean.bjr
+                huiZhiBean.bao_an_ren = bean.bjr
+                huiZhiBean.ju_bao_ren = bean.bjr
+                huiZhiBean.lian_xi_dan_wei = bean.gxdwmc
+                huiZhiBean.lian_xi_dian_hua = bean.bjdh
+                huiZhiBean.dan_qian_shi_jian = simpleDateFormat.format(date)
+                val printRquest = PrintRquest()
+                printRquest.type = "hui_zhi_dan"
+                printRquest.printStateTopic = AndroidMqttClient.printState
+                printRquest.content = Gson().toJson(huiZhiBean)
+                printRquest.code = bean.gxdwdm
+                var topic = "Ret/print/Send/" + DataHelper.imei
+                AndroidMqttClient.publish(topic = topic, msg = Gson().toJson(printRquest))
+            }
+        })
+
+        bind.tvChuFaDan.setOnClickListener(object : OnClickViewListener() {
+            override fun onClickSuc(v: View?) {
+                val intent = Intent(activity, ChuFaDanActivity::class.java)
+                intent.putExtra("gxdwdm", bean.gxdwdm)
+                intent.putExtra("jqbh", bean.jqbh)
+                startActivity(intent)
+            }
         })
     }
 

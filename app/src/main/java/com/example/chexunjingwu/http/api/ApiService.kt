@@ -163,7 +163,22 @@ interface ApiService {
     @POST("verification/getVerificationComparisonById")
     suspend fun getVerificationPortraitById(@Body body: RequestBody?): ApiCommonResponse<GetVerificationPortraitByIdResponse>
 
+    @Headers("Authorization: token")
+    @POST("jq/getAjbh")
+    suspend fun getAjbh(@Body request: RequestBody?): ApiCommonResponse<GetAjbhResponse>
 
+    @Headers("Authorization: authorization")
+    @POST("jq/jqCfjd")
+    suspend fun jqCfjd(@Body body: RequestBody?): ApiCommonResponse<JqCfjdResponse>
+
+
+    @Headers("Authorization: authorization")
+    @POST("jq/cfjdEdit")
+    suspend fun cfjdEdit(@Body body: RequestBody?): ApiCommonResponse<JqCfjdResponse>
+
+    @Headers("Authorization: token")
+    @POST("jq/getCfjdDetail")
+    suspend fun getCfjdDetail(@Body request: RequestBody?): ApiCommonResponse<GetCfjdDetailResponse>
 //    /**
 //     * 预警记录查询
 //     *

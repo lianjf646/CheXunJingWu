@@ -17,8 +17,6 @@ object ApiEngine {
     private var retrofit: Retrofit
 //    val cookieJar =
 //        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.app))
-
-
     init {
         val httpLogging =
             HttpLoggingInterceptor {
