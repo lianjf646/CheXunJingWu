@@ -44,7 +44,6 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
                 intent.putExtra("imei", imei)
                 startActivity(intent)
             }
-
         })
 
         bind.btnJiechujing.setOnClickListener(object : OnClickViewListener() {
@@ -93,7 +92,12 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
 //                }
 //                intent.putExtra("government", government)
 //                startActivity(intent)
+
+                var code = userInfo?.group?.code
+                var idCard = userInfo?.idCard
                 var intent = Intent()
+                intent.putExtra("code", code)
+                intent.putExtra("idCard", idCard)
                 intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
                 startActivity(intent)
             }
