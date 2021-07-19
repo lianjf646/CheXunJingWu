@@ -57,6 +57,15 @@
             android:text="退出登录"
             android:textColor="#152D59"
             android:textSize="@dimen/sp_25" />
+
+        <TextView
+            android:id="@+id/tv_version_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="警号：347583249"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_22" />
     </LinearLayout>
 
 
