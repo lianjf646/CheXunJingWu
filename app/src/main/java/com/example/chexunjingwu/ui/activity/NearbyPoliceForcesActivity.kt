@@ -2,8 +2,10 @@ package com.example.chexunjingwu.ui.activity
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.CompoundButton
+import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
@@ -50,7 +52,6 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
             override fun onClickSuc(v: View?) {
                 finish()
             }
-
         })
         government = intent.getStringExtra("code")!!
         idCard = intent.getStringExtra("idCard")!!
@@ -65,7 +66,7 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
 //        mBaiduMap.getUiSettings().setZoomGesturesEnabled(false);//获取是否允许缩放手势返回:是否允许缩放手势
         //        mBaiduMap.getUiSettings().setZoomGesturesEnabled(false);//获取是否允许缩放手势返回:是否允许缩放手势
         mBaiduMap.isMyLocationEnabled = true
-
+        BaiduLocationUntil.onStart()
         BaiduLocationUntil.locationAdressInfoListener =
             object : BaiduLocationUntil.LocationAdressInfoListener {
                 override fun onGetAddressInfo(location: BDLocation?) {
@@ -76,10 +77,16 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
                         .longitude(location!!.longitude).build()
                     mBaiduMap.setMyLocationData(locData)
                     setCenterPos(location.latitude, location.longitude);
+                    BaiduLocationUntil.onStop()
                 }
             }
-        BaiduLocationUntil.onStart()
-//        initLocationOption()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
     }
 
     override fun onResume() {
@@ -88,10 +95,23 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
         bind.mapView.onResume()
     }
 
+
     override fun onPause() {
         super.onPause()
         //在activity执行onPause时必须调用mMapView. onPause ()
         bind.mapView.onPause()
+    }
+
+    var mListener: BDAbstractLocationListener = object : BDAbstractLocationListener() {
+        override fun onReceiveLocation(p0: BDLocation?) {
+            Log.e(">>>>>>>>>", "onReceiveLocation: " + p0!!.time + "--" + p0!!.province)
+        }
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+
     }
 
     override fun onDestroy() {
@@ -99,7 +119,6 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
         //在activity执行onDestroy时必须调用mMapView.onDestroy()
         bind.mapView.onDestroy()
         mBaiduMap.isMyLocationEnabled = false
-        BaiduLocationUntil.onStop()
     }
 
     override fun viewOnClick() {
@@ -245,5 +264,6 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
             }
         }
     }
+
 
 }

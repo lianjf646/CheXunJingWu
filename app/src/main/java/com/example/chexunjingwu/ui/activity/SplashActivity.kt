@@ -39,6 +39,7 @@ class SplashActivity : BaseActivity() {
             }
             .request { allGranted, grantedList, deniedList ->
                 if (allGranted) {
+
                     var intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -48,7 +49,5 @@ class SplashActivity : BaseActivity() {
 
                 }
             }
-
-
     }
 }
