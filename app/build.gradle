@@ -9,7 +9,8 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.chexunjingwu"
+        //1fshgjzrBTtzqKAeH0uPiOPFuKqDvR50
+        applicationId "com.hylink.chexunjingwu"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -35,6 +36,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            matchingFallbacks = ['互联网', 'release', 'debug']
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -49,8 +57,6 @@ android {
      */
     productFlavors {
         乌海 {
-            versionCode 20
-            versionName "2.0"
             buildConfigField("String", "BASE_URL", "\"http://20.115.11.145:9000/zhjc/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://20.115.11.145:1883\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
@@ -65,7 +71,6 @@ android {
         }
 
         互联网 {
-
             buildConfigField("String", "BASE_URL", "\"http://111.42.38.120:9000/gacz-data-test-service/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")

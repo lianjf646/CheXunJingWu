@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.chexunjingwu">
+    package="com.hylink.chexunjingwu">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -74,7 +74,7 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
     <application
-        android:name=".base.App"
+        android:name="com.hylink.chexunjingwu.base.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -82,7 +82,7 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name="com.hylink.chexunjingwu.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -90,37 +90,77 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.LoginActivity" />
-        <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.SaoMaActivity" />
-        <activity android:name=".ui.activity.MineEarlyWarningActivity" />
-        <activity android:name=".ui.activity.JieChuJingActivity" />
-        <activity android:name=".ui.activity.PoliceInforartionDetailActivity" />
-        <activity android:name=".ui.activity.JingQingFeedBackActivity" />
-        <activity android:name=".ui.activity.PoliceListActivity" />
-        <activity android:name=".ui.activity.FeedBackDetailActivity" />
-        <activity android:name=".ui.activity.CheckActivity" />
-        <activity android:name=".ui.activity.CheckDetailActivity" />
-        <activity android:name=".ui.activity.SettingHouTaiActivity" />
-        <activity android:name=".ui.activity.InstructionsActivity" />
-        <activity android:name=".ui.activity.InstructionsDetailActivity" />
-        <activity android:name=".ui.activity.VideoActivity" />
-        <activity android:name=".ui.activity.InstructionsFeedBackActivity" />
-        <activity android:name=".ui.activity.PersonnelInfoActivity" />
-        <activity android:name=".ui.activity.CarInfoActivity" />
-        <activity android:name=".ui.activity.NearbyPoliceForcesActivity" />
-        <activity android:name=".ui.activity.ChuFaDanActivity" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.SaoMaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.MineEarlyWarningActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.JieChuJingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.PoliceInforartionDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.JingQingFeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.PoliceListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.FeedBackDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.CheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.CheckDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.SettingHouTaiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.InstructionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.InstructionsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.VideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.InstructionsFeedBackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.PersonnelInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.CarInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.NearbyPoliceForcesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.ChuFaDanActivity"
+            android:screenOrientation="portrait" />
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="1fshgjzrBTtzqKAeH0uPiOPFuKqDvR50" />
+            android:value="bLsi7xuGbNuNK9P0xPZI9L0rjNk2u63j" />
 
         <!-- 声明service组件 -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"/>
+            android:process=":remote" />
     </application>
 </manifest>

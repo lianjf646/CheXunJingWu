@@ -199,7 +199,7 @@
                     android:layout_height="@dimen/dp_1"
                     android:background="@color/jwt_bg_color" />
 
-                <com.example.chexunjingwu.ui.view.MyListView
+                <com.hylink.chexunjingwu.ui.view.MyListView
                     android:id="@+id/lv_yuyin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -233,7 +233,7 @@
                     android:layout_height="@dimen/dp_1"
                     android:background="@color/jwt_bg_color" />
 
-                <com.example.chexunjingwu.ui.view.MyGridView
+                <com.hylink.chexunjingwu.ui.view.MyGridView
                     android:id="@+id/gv_picture"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -267,7 +267,7 @@
                     android:layout_height="@dimen/dp_1"
                     android:background="@color/jwt_bg_color" />
 
-                <com.example.chexunjingwu.ui.view.MyGridView
+                <com.hylink.chexunjingwu.ui.view.MyGridView
                     android:id="@+id/gv_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -302,7 +302,7 @@
                     android:layout_height="@dimen/dp_1"
                     android:background="@color/jwt_bg_color" />
 
-                <com.example.chexunjingwu.ui.view.MyListView
+                <com.hylink.chexunjingwu.ui.view.MyListView
                     android:id="@+id/lv_feedback"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
