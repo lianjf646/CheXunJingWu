@@ -1,8 +1,10 @@
 package com.hylink.chexunjingwu.base
 
 import android.app.Application
+import cn.com.cybertech.pdk.AppException
 import com.baidu.mapapi.CoordType
 import com.baidu.mapapi.SDKInitializer
+import com.hylink.chexunjingwu.BuildConfig
 
 class App : Application() {
     companion object {
@@ -18,6 +20,10 @@ class App : Application() {
         //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
         SDKInitializer.setCoordType(CoordType.BD09LL)
 //        LoadMoreModuleConfig.defLoadMoreView = SimpleLoadMoreView()
+
+        AppException
+            .getInstance()
+            .registerExceptionHandler(this, BuildConfig.CLIENT_ID)
     }
 
 

@@ -6,6 +6,7 @@ import java.lang.reflect.ParameterizedType
 
 abstract class BaseViewModelActivity<VM : BaseViewModel> : BaseActivity() {
     protected open lateinit var mViewModel: VM
+
     override fun onCreate(savedInstanceState: Bundle?) {
         initViewModel()
         super.onCreate(savedInstanceState)
@@ -14,8 +15,6 @@ abstract class BaseViewModelActivity<VM : BaseViewModel> : BaseActivity() {
 
     private fun initViewModel() {
         mViewModel = ViewModelProvider(this)[getVMCls(this)]
-
-
     }
 
     private fun <VM> getVMCls(cls: Any): VM {
@@ -24,5 +23,6 @@ abstract class BaseViewModelActivity<VM : BaseViewModel> : BaseActivity() {
 
 
     protected abstract fun observe() // LiveData发生变化通知界面改变
+
 
 }

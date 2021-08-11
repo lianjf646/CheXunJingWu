@@ -20,7 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/login_text" />.
+            android:src="@drawable/login_text"
+            android:visibility="visible" />.
 
         <EditText
             android:id="@+id/et_num"
@@ -78,14 +79,30 @@
             android:textSize="@dimen/sp_22"
             android:theme="@style/MyCheckBox1" />
 
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/tv_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
 
     <ImageView
         android:layout_width="0dp"
-        android:scaleType="fitEnd"
         android:layout_height="wrap_content"
+        android:scaleType="fitEnd"
         android:src="@drawable/long_bottom_img"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -13,8 +13,8 @@ android {
         applicationId "com.hylink.chexunjingwu"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.0.3"
         flavorDimensions "versionCode"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -56,24 +56,48 @@ android {
      * 配置多渠道打包
      */
     productFlavors {
-        乌海 {
-            buildConfigField("String", "BASE_URL", "\"http://20.115.11.145:9000/zhjc/\"")
-            buildConfigField("String", "TCP_MQTT", "\"tcp://20.115.11.145:1883\"")
-            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
 
-        }
-
-        乌海测试 {
-            buildConfigField("String", "BASE_URL", "\"http://20.115.11.145:9000/zhjc/\"")
-            buildConfigField("String", "TCP_MQTT", "\"tcp://20.115.11.145:1883\"")
-            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
-
-        }
 
         互联网 {
             buildConfigField("String", "BASE_URL", "\"http://111.42.38.120:9000/gacz-data-test-service/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
+
+            manifestPlaceholders = [
+                    ENTRY_ACTION  : "android.intent.action.MAIN",
+                    ENTRY_CATEGORY: "android.intent.category.LAUNCHER"
+            ]
+            buildConfigField("String", "REG_ID", "\"330000100115\"")
+            buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
+
+        }
+
+        浙江 {
+            buildConfigField("String", "BASE_URL", "\"http://20.65.2.12:1728/gacz-data-service/\"")
+            buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
+            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
+            manifestPlaceholders = [
+                    ENTRY_ACTION  : "pstore.intent.action.MAIN",
+                    ENTRY_CATEGORY: "pstore.intent.category.APP"
+            ]
+
+            buildConfigField("String", "REG_ID", "\"330000100115\"")
+            buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
+
+
+        }
+
+        浙江测试 {
+            buildConfigField("String", "BASE_URL", "\"http://20.65.2.12:1728/gacz-data-service/\"")
+            buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
+            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
+            manifestPlaceholders = [
+                    ENTRY_ACTION  : "android.intent.action.MAIN",
+                    ENTRY_CATEGORY: "android.intent.category.LAUNCHER"
+            ]
+
+            buildConfigField("String", "REG_ID", "\"330000100115\"")
+            buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
 
         }
     }
@@ -107,6 +131,19 @@ android {
     //此处添加你要过滤的文件
     packagingOptions {
         exclude 'META-INF/library_release.kotlin_module'
+    }
+
+    defaultConfig {
+        ndk {
+            // 设置支持的SO库架构，第三方给的so库哪几种架构，就配置这几种架构
+            abiFilters 'armeabi'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
     }
 
 }

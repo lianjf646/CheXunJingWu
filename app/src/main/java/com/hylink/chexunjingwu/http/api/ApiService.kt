@@ -1,5 +1,6 @@
 package com.hylink.chexunjingwu.http.api
 
+import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.http.request.ChaRenResponse
 import com.hylink.chexunjingwu.http.response.*
 import okhttp3.RequestBody
@@ -10,7 +11,8 @@ import retrofit2.http.POST
 
 interface ApiService {
     companion object {
-        const val BASE_URL = "http://111.42.38.120:9000/gacz-data-test-service/"
+//        const val BASE_URL = "http://111.42.38.120:9000/gacz-data-test-service/"
+        const val BASE_URL = BuildConfig.BASE_URL
     }
 
     @POST("sign/login")

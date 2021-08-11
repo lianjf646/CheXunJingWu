@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.hylink.chexunjingwu">
+    package="com.hylink.chexunjingwu"
+    android:versionCode="3"
+    android:versionName="1.0.0.3">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -40,6 +42,18 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+
+    <!--    /*******************************/-->
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_USERINFO"></uses-permission>
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_LINKINFO"></uses-permission>
+    <uses-permission android:name="cybertech.pstore.permission.APP" />
+    <uses-permission android:name="cybertech.permission.READ_PSTORE" />
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_USERINFO" />
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_SERVER_SYNC_TIME" />
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_LINKINFO" />
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_LOCATIONINFO" />
+    <uses-permission android:name="cybertech.permission.WRITE_PSTORE_OPERATIONLOG" />
+    <uses-permission android:name="cybertech.permission.WRITE_PSTORE_APP_STATE_MONITOR" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
@@ -73,26 +87,29 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
+
     <application
         android:name="com.hylink.chexunjingwu.base.App"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/logo_a"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_config"
-        android:roundIcon="@drawable/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_a"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.hylink.chexunjingwu.ui.activity.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="${ENTRY_ACTION}" />
+                <category android:name="${ENTRY_CATEGORY}" />
             </intent-filter>
         </activity>
 
         <activity
             android:name="com.hylink.chexunjingwu.ui.activity.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <activity
             android:name="com.hylink.chexunjingwu.ui.activity.MainActivity"
             android:screenOrientation="portrait" />
@@ -151,7 +168,29 @@
             android:name="com.hylink.chexunjingwu.ui.activity.ChuFaDanActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.hylink.chexunjingwu.ui.activity.ZheJiangNearbyPoliceForcesActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
+
         <service android:name="org.eclipse.paho.android.service.MqttService" />
+
+        <!--        // 图盟key-->
+        <meta-data
+            android:name="com.mapabc.apikey"
+            android:value="ec85d3648154874552835438ac6a02b2" />
+
+        <!--        //移动端服务-->
+        <meta-data
+            android:name="com.mapabc.search.service"
+            android:value="http://20.0.0.50:25001/as" />
+
+        <!--        // 移动端服务-->
+        <meta-data
+            android:name="com.mapabc.map.service"
+            android:value="http://20.0.0.50:15007" />
+
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

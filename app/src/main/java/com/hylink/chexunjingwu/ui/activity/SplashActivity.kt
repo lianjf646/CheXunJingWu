@@ -1,53 +1,57 @@
 package com.hylink.chexunjingwu.ui.activity
 
-import android.Manifest
+import android.app.Activity
 import android.content.Intent
-import com.dylanc.viewbinding.binding
-import com.hylink.chexunjingwu.base.BaseActivity
-import com.hylink.chexunjingwu.databinding.ActivitySplashBinding
-import com.hylink.chexunjingwu.tools.showNormal
-import com.permissionx.guolindev.PermissionX
+import android.os.Bundle
+import android.util.Log
+import cn.com.cybertech.pdk.auth.Oauth2AccessToken
+import cn.com.cybertech.pdk.auth.PstoreAuth
+import cn.com.cybertech.pdk.auth.PstoreAuthListener
+import cn.com.cybertech.pdk.auth.sso.SsoHandler
+import cn.com.cybertech.pdk.exception.PstoreException
+import com.hylink.chexunjingwu.R
 
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : Activity() {
 
-    private val bind: ActivitySplashBinding by binding();
-    override fun viewOnClick() {
-        bind.root
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
+//        initData();
+        startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
+        finish()
     }
 
-    override fun initData() {
+    fun initData() {
+        //key: 35D6F3BCDDC05176A39352D7F2747657	应用REG_ID：	330000100115
+        var mAuth = PstoreAuth(this, "35D6F3BCDDC05176A39352D7F2747657");
+        var mSsoHandler = SsoHandler(this, mAuth);
 
-        PermissionX.init(this)
-            .permissions(
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.READ_SMS,
-                Manifest.permission.READ_PHONE_NUMBERS,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-            )
-            .onExplainRequestReason { scope, deniedList ->
-                scope.showRequestReasonDialog(
-                    deniedList,
-                    "没有以下权限将无法使用",
-                    "OK",
-                    "Cancel"
-                )
+        mSsoHandler.authorize(object : PstoreAuthListener {
+            override fun onComplete(p0: Oauth2AccessToken?) {
+                Log.e(">>>>>", "onComplete: " + p0!!.token)
+//                UserInfo.getUser(this@SplashActivity)
+//                var link = LinkInfo.getLink(this@SplashActivity);
+//                ApiService.BASE_URL = link.ip
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
+                finish()
             }
-            .request { allGranted, grantedList, deniedList ->
-                if (allGranted) {
 
-                    var intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    showNormal("These permissions are denied: $deniedList")
-//                    showRequestReasonDialog(filteredList, "摄像机权限是程序必须依赖的权限", "我已明白")
-
-                }
+            override fun onPstoreException(p0: PstoreException?) {
+                Log.e(">>>>>", "onPstoreException: " + p0.toString() + p0!!.message)
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
+                finish()
             }
+
+            override fun onCancel() {
+                Log.e(">>>>>", "onCancel: ")
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
+                finish()
+            }
+        })
+
     }
+
+
 }

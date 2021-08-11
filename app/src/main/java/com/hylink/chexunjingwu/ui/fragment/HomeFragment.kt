@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.dylanc.viewbinding.binding
+import com.google.gson.Gson
 import com.hylink.chexunjingwu.R
 import com.hylink.chexunjingwu.base.BaseVMFragment
 import com.hylink.chexunjingwu.bean.QRcodeInfo
@@ -17,7 +18,6 @@ import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.OnClickViewListener
 import com.hylink.chexunjingwu.ui.activity.*
 import com.hylink.chexunjingwu.viewmodel.HomeFragmentViewModel
-import com.google.gson.Gson
 import com.uuzuche.lib_zxing.activity.CodeUtils
 
 class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_home) {
@@ -98,7 +98,8 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
                 var intent = Intent()
                 intent.putExtra("code", code)
                 intent.putExtra("idCard", idCard)
-                intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
+//                intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
+                intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
                 startActivity(intent)
             }
         })

@@ -83,12 +83,6 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-
-    }
-
     override fun onResume() {
         super.onResume()
         //在activity执行onResume时必须调用mMapView. onResume ()
@@ -106,7 +100,6 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
         override fun onReceiveLocation(p0: BDLocation?) {
             Log.e(">>>>>>>>>", "onReceiveLocation: " + p0!!.time + "--" + p0!!.province)
         }
-
     }
 
     override fun onStop() {
@@ -162,8 +155,7 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
             val xy: DoubleArray =
                 GPSUtil.gps84_To_bd09(dto.gps_point[1], dto.gps_point[0])
             val p1 = LatLng(xy[0], xy[1])
-            var option: OverlayOptions?
-            option = if (dto.is_online === 1) {
+            var option = if (dto.is_online === 1) {
                 MarkerOptions()
                     .position(p1)
                     .icon(icon_jc_t)
@@ -256,7 +248,7 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
 
 
     private fun clearMarkList(markerList: List<Marker>) {
-        if (!markerList.isEmpty()) {
+        if (markerList.isNotEmpty()) {
             for (marker in markerList) {
                 if (!marker.isRemoved) {
                     marker.remove()
@@ -264,6 +256,4 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
             }
         }
     }
-
-
 }
