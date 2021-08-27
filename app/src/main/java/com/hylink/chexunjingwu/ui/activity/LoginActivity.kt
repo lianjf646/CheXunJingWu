@@ -9,6 +9,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Observer
+import cn.com.cybertech.pdk.UserInfo
 import cn.com.cybertech.pdk.auth.Oauth2AccessToken
 import cn.com.cybertech.pdk.auth.PstoreAuth
 import cn.com.cybertech.pdk.auth.PstoreAuthListener
@@ -19,15 +20,12 @@ import com.fri.libfriapkrecord.read.SignRecordTools
 import com.hylink.chexunjingwu.base.BaseViewModelActivity
 import com.hylink.chexunjingwu.databinding.ActivityLoginBinding
 import com.hylink.chexunjingwu.http.api.HttpResponseState
-import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.ZheJiangLog
 import com.hylink.chexunjingwu.tools.md5
 import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.viewmodel.LoginViewModel
 import com.permissionx.guolindev.PermissionX
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -57,14 +55,14 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
 
 
     override fun initData() {
-        GlobalScope.launch(Dispatchers.Main) {
-            dataStore.data
-                .collect {
-                    bind.etNum.setText(it[NUM])
-                    bind.etPassword.setText(it[PASSWORD])
-                    bind.chb.isChecked = it[IS_REMEMBER] == true
-                }
-        }
+//        GlobalScope.launch(Dispatchers.Main) {
+//            dataStore.data
+//                .collect {
+//                    bind.etNum.setText(it[NUM])
+//                    bind.etPassword.setText(it[PASSWORD])
+//                    bind.chb.isChecked = it[IS_REMEMBER] == true
+//                }
+//        }
 
         PermissionX.init(this)
             .permissions(
@@ -87,7 +85,6 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             }
             .request { allGranted, grantedList, deniedList ->
                 if (allGranted) {
-
 //                    var intent = Intent(this, LoginActivity::class.java)
 //                    startActivity(intent)
 //                    finish()
@@ -99,6 +96,16 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             }
         getToken();
         getCode();
+        try {
+            var user = UserInfo.getUser(this)
+            if (user == null) {
+                showNormal("通过sdk 获取用户信息失败")
+                return
+            }
+            mViewModel.login(user.idCard)
+        } catch (e: Exception) {
+            showNormal(e.message!!)
+        }
     }
 
 
@@ -118,19 +125,18 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
                         }
                     }
                 }
-//                DataHelper.putData(DataHelper.loginInfo, it?.httpResponse!!)
-                DataHelper.putData(
-                    DataHelper.loginUserInfo,
-                    it?.httpResponse?.data?.data?.user!!
-                )
-                DataHelper.putData(
-                    DataHelper.loginUserGroup,
-                    it?.httpResponse?.data?.data?.user?.group!!
-                )
-                DataHelper.putData(
-                    DataHelper.loginUserJob,
-                    it?.httpResponse?.data?.data?.user?.job!!
-                )
+//                DataHelper.putData(
+//                    DataHelper.loginUserInfo,
+//                    it?.httpResponse?.data?.data?.user!!
+//                )
+//                DataHelper.putData(
+//                    DataHelper.loginUserGroup,
+//                    it?.httpResponse?.data?.data?.user?.group!!
+//                )
+//                DataHelper.putData(
+//                    DataHelper.loginUserJob,
+//                    it?.httpResponse?.data?.data?.user?.job!!
+//                )
 
                 ZheJiangLog.login()
                 var intent = Intent(this, MainActivity::class.java)
@@ -140,7 +146,7 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
         })
     }
 
-    fun getToken() {
+    private fun getToken() {
 
         var mAuth = PstoreAuth(this, "330000100115");
         var mSsoHandler = SsoHandler(this, mAuth);
@@ -148,13 +154,6 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
         mSsoHandler.authorize(object : PstoreAuthListener {
             override fun onComplete(p0: Oauth2AccessToken?) {
 //                Log.e(">>>>>", "onComplete: " + p0!!.token)
-////                UserInfo.getUser(this@SplashActivity)
-////                var link = LinkInfo.getLink(this@SplashActivity);
-////                ApiService.BASE_URL = link.ip
-//                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
-//                finish()
-//                showNormal(p0!!.token)
-
                 bind.tvToken.text == p0!!.token
             }
 

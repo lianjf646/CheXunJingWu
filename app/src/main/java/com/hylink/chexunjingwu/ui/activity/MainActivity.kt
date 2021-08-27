@@ -1,5 +1,6 @@
 package com.hylink.chexunjingwu.ui.activity
 
+import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -20,9 +21,11 @@ import com.hylink.chexunjingwu.http.AndroidMqttClient
 import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.ZheJiangLog
+import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.ui.fragment.HomeFragment
 import com.hylink.chexunjingwu.ui.fragment.MineFragment
 import com.hylink.chexunjingwu.util.PushBroadcastReceiver
+import com.permissionx.guolindev.PermissionX
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
@@ -90,6 +93,40 @@ class MainActivity : BaseActivity() {
 
         }, 1, 3, TimeUnit.SECONDS)
         mFuture.run {}
+
+
+
+
+        PermissionX.init(this)
+            .permissions(
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_SMS,
+                Manifest.permission.READ_PHONE_NUMBERS,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+            )
+            .onExplainRequestReason { scope, deniedList ->
+                scope.showRequestReasonDialog(
+                    deniedList,
+                    "没有以下权限将无法使用",
+                    "OK",
+                    "Cancel"
+                )
+            }
+            .request { allGranted, grantedList, deniedList ->
+                if (allGranted) {
+//                    var intent = Intent(this, LoginActivity::class.java)
+//                    startActivity(intent)
+//                    finish()
+                } else {
+                    showNormal("These permissions are denied: $deniedList")
+//                    showRequestReasonDialog(filteredList, "摄像机权限是程序必须依赖的权限", "我已明白")
+
+                }
+            }
     }
 
 

@@ -13,8 +13,8 @@ android {
         applicationId "com.hylink.chexunjingwu"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 3
-        versionName "1.0.0.3"
+        versionCode 4
+        versionName "1.0.0.4"
         flavorDimensions "versionCode"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -74,7 +74,7 @@ android {
 
         浙江 {
             buildConfigField("String", "BASE_URL", "\"http://20.65.2.12:1728/gacz-data-service/\"")
-            buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
+            buildConfigField("String", "TCP_MQTT", "\"tcp://20.65.3.207:1887\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
             manifestPlaceholders = [
                     ENTRY_ACTION  : "pstore.intent.action.MAIN",

@@ -22,4 +22,16 @@ class LoginViewModel : BaseViewModel() {
             loginLiveData.value = httpData;
         })
     }
+
+
+    fun login(idCard: String) {
+        var httpData: HttpData<HomeLoginResponse> = HttpData();
+        val request = HomeLoginRequest(idCard = idCard);
+        launch(block = {
+            httpData.httpResponse = loginRepository.login(request);
+        }, complete = {
+            httpData.httpResponseState = it;
+            loginLiveData.value = httpData;
+        })
+    }
 }
