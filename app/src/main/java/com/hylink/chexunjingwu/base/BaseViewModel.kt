@@ -3,10 +3,10 @@ package com.hylink.chexunjingwu.base
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.JsonParseException
 import com.hylink.chexunjingwu.http.api.ApiException
 import com.hylink.chexunjingwu.http.api.HttpResponseState
 import com.hylink.chexunjingwu.tools.showError
-import com.google.gson.JsonParseException
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -89,14 +89,15 @@ open class BaseViewModel : ViewModel() {
 
             is JsonParseException -> {
                 // TODO JSON解析错误
+                showError("JSON解析错误" + e.message)
                 return HttpResponseState.STATE_ERROR
             }
             else -> {
                 // TODO 其他错误
-
                 e.message?.let {
                     Log.e(">>>>>", "其他错误: $it")
-                    showError("其他错误$it") }
+                    showError("其他错误$it")
+                }
                 return HttpResponseState.STATE_UNKNOWN
             }
         }

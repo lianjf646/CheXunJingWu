@@ -1,9 +1,11 @@
 package com.hylink.chexunjingwu.http.api
 
 import android.util.Log
+import cn.net.hylink.zhejiang.ZheJiangInterceptor
+import com.google.gson.GsonBuilder
+import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.base.App
 import com.hylink.chexunjingwu.http.gsontypeadapter.StringTypeAdapter
-import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -40,6 +42,11 @@ object ApiEngine {
 
 //            callTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)
             addInterceptor(httpLogging)
+
+            if (BuildConfig.FLAVOR == "浙江测试"){
+                addInterceptor(ZheJiangInterceptor())
+            }
+
 //            cache(cache)
 //            cookieJar(cookieJar)
 

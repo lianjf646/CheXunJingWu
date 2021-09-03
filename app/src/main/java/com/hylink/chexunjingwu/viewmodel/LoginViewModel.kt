@@ -28,6 +28,7 @@ class LoginViewModel : BaseViewModel() {
         var httpData: HttpData<HomeLoginResponse> = HttpData();
         val request = HomeLoginRequest(idCard = idCard);
         launch(block = {
+
             httpData.httpResponse = loginRepository.login(request);
         }, complete = {
             httpData.httpResponseState = it;

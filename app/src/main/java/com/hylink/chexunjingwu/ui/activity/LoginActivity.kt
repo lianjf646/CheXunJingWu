@@ -17,16 +17,16 @@ import cn.com.cybertech.pdk.auth.sso.SsoHandler
 import cn.com.cybertech.pdk.exception.PstoreException
 import com.dylanc.viewbinding.binding
 import com.fri.libfriapkrecord.read.SignRecordTools
+import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.base.BaseViewModelActivity
 import com.hylink.chexunjingwu.databinding.ActivityLoginBinding
 import com.hylink.chexunjingwu.http.api.HttpResponseState
+import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.ZheJiangLog
 import com.hylink.chexunjingwu.tools.md5
 import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.viewmodel.LoginViewModel
 import com.permissionx.guolindev.PermissionX
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
@@ -96,51 +96,78 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             }
         getToken();
         getCode();
-        try {
-            var user = UserInfo.getUser(this)
-            if (user == null) {
-                showNormal("通过sdk 获取用户信息失败")
-                return
-            }
-            mViewModel.login(user.idCard)
-        } catch (e: Exception) {
-            showNormal(e.message!!)
+
+        if (BuildConfig.FLAVOR == "互联网") {
+            return
         }
+        var user = UserInfo.getUser(this)
+        if (user == null) {
+            showNormal("通过sdk 获取用户信息失败")
+            return
+        }
+        if (user?.idCard.isNullOrEmpty()) {
+            showNormal("通过sdk 获取身份证号不存在")
+            return
+        }
+        var idCard = user.idCard;
+        mViewModel.login(idCard)
+
     }
 
 
     override fun observe() {
         mViewModel.loginLiveData.observe(this, Observer {
+
             if (it.httpResponseState == HttpResponseState.STATE_SUCCESS) {
-                GlobalScope.launch {
-                    if (bind.chb.isChecked) {
-                        dataStore.edit { value ->
-                            value[NUM] = bind.etNum.text.toString()
-                            value[PASSWORD] = bind.etPassword.text.toString()
-                            value[IS_REMEMBER] = bind.chb.isChecked
-                        }
-                    } else {
-                        dataStore.edit {
-                            it.clear()
-                        }
-                    }
+//                GlobalScope.launch {
+//                    if (bind.chb.isChecked) {
+//                        dataStore.edit { value ->
+//                            value[NUM] = bind.etNum.text.toString()
+//                            value[PASSWORD] = bind.etPassword.text.toString()
+//                            value[IS_REMEMBER] = bind.chb.isChecked
+//                        }
+//                    } else {
+//                        dataStore.edit {
+//                            it.clear()
+//                        }
+//                    }
+//                }
+                if (it?.httpResponse?.data == null) {
+                    showNormal("未获取到用户信息")
+                    finish()
+                    return@Observer
                 }
-//                DataHelper.putData(
-//                    DataHelper.loginUserInfo,
-//                    it?.httpResponse?.data?.data?.user!!
-//                )
-//                DataHelper.putData(
-//                    DataHelper.loginUserGroup,
-//                    it?.httpResponse?.data?.data?.user?.group!!
-//                )
-//                DataHelper.putData(
-//                    DataHelper.loginUserJob,
-//                    it?.httpResponse?.data?.data?.user?.job!!
-//                )
+
+                if (it?.httpResponse?.data?.data == null) {
+                    showNormal("未获取到用户信息")
+                    finish()
+                    return@Observer
+                }
+
+                if (it?.httpResponse?.data?.data?.user == null) {
+                    showNormal("未获取到用户信息")
+                    finish()
+                    return@Observer
+                }
+
+                DataHelper.putData(
+                    DataHelper.loginUserInfo,
+                    it?.httpResponse?.data?.data?.user!!
+                )
+                DataHelper.putData(
+                    DataHelper.loginUserGroup,
+                    it?.httpResponse?.data?.data?.user?.group!!
+                )
+                DataHelper.putData(
+                    DataHelper.loginUserJob,
+                    it?.httpResponse?.data?.data?.user?.job!!
+                )
 
                 ZheJiangLog.login()
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
+            } else {
                 finish()
             }
         })
@@ -179,8 +206,10 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             //读取备案号
             val recordNum = SignRecordTools.readNumbers(apkPath)
             bind.tvCode.text = "全国注册备案号：$recordNum"
-        } catch (e: Throwable) {
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+
     }
 
 }

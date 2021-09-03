@@ -9,6 +9,8 @@ import com.hylink.chexunjingwu.base.BaseFragment
 import com.hylink.chexunjingwu.databinding.FragmentMineBinding
 import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
+import com.hylink.chexunjingwu.tools.OnClickViewListener
+import kotlin.system.exitProcess
 
 class MineFragment : BaseFragment(R.layout.fragment_mine) {
     val bind: FragmentMineBinding by binding()
@@ -20,6 +22,13 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
         bind.tvName.text = "姓名:${userInfo.name}"
         bind.tvJh.text = "警号:${userInfo.pcard}"
         bind.tvVersionName.text = "版本:${BuildConfig.VERSION_NAME}"
+
+        bind.btnOutLogin.setOnClickListener(object : OnClickViewListener() {
+            override fun onClickSuc(v: View?) {
+                getActivity()?.finish()
+                exitProcess(0)
+            }
+        })
     }
 
 }

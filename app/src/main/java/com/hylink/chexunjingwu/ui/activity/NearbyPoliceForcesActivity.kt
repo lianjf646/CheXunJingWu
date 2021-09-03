@@ -53,7 +53,7 @@ class NearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceForcesViewM
                 finish()
             }
         })
-        government = intent.getStringExtra("code")!!
+//        government = intent.getStringExtra("code")!!
         idCard = intent.getStringExtra("idCard")!!
 
         mBaiduMap = bind.mapView.map
