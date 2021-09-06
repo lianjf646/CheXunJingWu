@@ -21,6 +21,7 @@ import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.base.BaseViewModelActivity
 import com.hylink.chexunjingwu.databinding.ActivityLoginBinding
 import com.hylink.chexunjingwu.http.api.HttpResponseState
+import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.ZheJiangLog
 import com.hylink.chexunjingwu.tools.md5
@@ -100,6 +101,8 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
         if (BuildConfig.FLAVOR == "互联网") {
             return
         }
+//        var idCard = "339005199210247317";
+//        mViewModel.login(idCard)
         var user = UserInfo.getUser(this)
         if (user == null) {
             showNormal("通过sdk 获取用户信息失败")
@@ -114,68 +117,72 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
 
     }
 
-
     override fun observe() {
         mViewModel.loginLiveData.observe(this, Observer {
-
             if (it.httpResponseState == HttpResponseState.STATE_SUCCESS) {
-//                GlobalScope.launch {
-//                    if (bind.chb.isChecked) {
-//                        dataStore.edit { value ->
-//                            value[NUM] = bind.etNum.text.toString()
-//                            value[PASSWORD] = bind.etPassword.text.toString()
-//                            value[IS_REMEMBER] = bind.chb.isChecked
-//                        }
-//                    } else {
-//                        dataStore.edit {
-//                            it.clear()
-//                        }
-//                    }
-//                }
-                if (it?.httpResponse?.data == null) {
-                    showNormal("未获取到用户信息")
-                    finish()
-                    return@Observer
-                }
-
-                if (it?.httpResponse?.data?.data == null) {
-                    showNormal("未获取到用户信息")
-                    finish()
-                    return@Observer
-                }
-
-                if (it?.httpResponse?.data?.data?.user == null) {
-                    showNormal("未获取到用户信息")
-                    finish()
-                    return@Observer
-                }
-
-                DataHelper.putData(
-                    DataHelper.loginUserInfo,
-                    it?.httpResponse?.data?.data?.user!!
-                )
-                DataHelper.putData(
-                    DataHelper.loginUserGroup,
-                    it?.httpResponse?.data?.data?.user?.group!!
-                )
-                DataHelper.putData(
-                    DataHelper.loginUserJob,
-                    it?.httpResponse?.data?.data?.user?.job!!
-                )
-
-                ZheJiangLog.login()
-                var intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                finish()
+                goMainAct(it?.httpResponse!!)
             }
+            finish()
         })
+    }
+
+    private fun goMainAct(httpResponse: HomeLoginResponse) {
+//                GlobalScope.launch {
+//                   if (bind.chb.isChecked) {
+//                       dataStore.edit { value ->
+//                           value[NUM] = bind.etNum.text.toString()
+//                           value[PASSWORD] = bind.etPassword.text.toString()
+//                           value[IS_REMEMBER] = bind.chb.isChecked
+//                       }
+//                   } else {
+//                       dataStore.edit {
+//                           it.clear()
+//                       }
+//                   }
+//               }
+
+        if (httpResponse == null) {
+            showNormal("未获取到用户信息4")
+            return
+        }
+
+        if (httpResponse?.data == null) {
+            showNormal("未获取到用户信息3")
+            return
+        }
+
+        if (httpResponse?.data?.data == null) {
+            showNormal("未获取到用户信息2")
+            return
+        }
+
+        if (httpResponse?.data?.data?.user == null) {
+            showNormal("未获取到用户信息1")
+            return
+        }
+
+        DataHelper.putData(
+            DataHelper.loginUserInfo,
+            httpResponse?.data?.data?.user!!
+        )
+        DataHelper.putData(
+            DataHelper.loginUserGroup,
+            httpResponse?.data?.data?.user?.group!!
+        )
+        DataHelper.putData(
+            DataHelper.loginUserJob,
+            httpResponse?.data?.data?.user?.job!!
+        )
+
+        ZheJiangLog.login()
+        var intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun getToken() {
 
-        var mAuth = PstoreAuth(this, "330000100115");
+        //330000100115
+        var mAuth = PstoreAuth(this, BuildConfig.REG_ID);
         var mSsoHandler = SsoHandler(this, mAuth);
 
         mSsoHandler.authorize(object : PstoreAuthListener {

@@ -13,8 +13,8 @@ android {
         applicationId "com.hylink.chexunjingwu"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 5
-        versionName "1.0.0.5"
+        versionCode 6
+        versionName "1.0.0.6"
         flavorDimensions "versionCode"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
