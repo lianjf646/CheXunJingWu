@@ -95,14 +95,14 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
 
                 }
             }
-        getToken();
-        getCode();
 
         if (BuildConfig.FLAVOR == "互联网") {
             return
         }
 //        var idCard = "339005199210247317";
 //        mViewModel.login(idCard)
+        getToken();
+        getCode();
         var user = UserInfo.getUser(this)
         if (user == null) {
             showNormal("通过sdk 获取用户信息失败")
@@ -114,6 +114,8 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
         }
         var idCard = user.idCard;
         mViewModel.login(idCard)
+        showNormal(idCard)
+        bind.tvIdCard.text = "idCard:$idCard"
 
     }
 
@@ -122,7 +124,6 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             if (it.httpResponseState == HttpResponseState.STATE_SUCCESS) {
                 goMainAct(it?.httpResponse!!)
             }
-            finish()
         })
     }
 
@@ -177,46 +178,8 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
         ZheJiangLog.login()
         var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
-    private fun getToken() {
-
-        //330000100115
-        var mAuth = PstoreAuth(this, BuildConfig.REG_ID);
-        var mSsoHandler = SsoHandler(this, mAuth);
-
-        mSsoHandler.authorize(object : PstoreAuthListener {
-            override fun onComplete(p0: Oauth2AccessToken?) {
-//                Log.e(">>>>>", "onComplete: " + p0!!.token)
-                bind.tvToken.text == p0!!.token
-            }
-
-            override fun onPstoreException(p0: PstoreException?) {
-                Log.e(">>>>>", "onPstoreException: " + p0.toString() + p0!!.message)
-//                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
-//                finish()
-                showNormal(p0!!.message!!)
-            }
-
-            override fun onCancel() {
-//                Log.e(">>>>>", "onCancel: ")
-//                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
-//                finish()
-            }
-        })
-    }
-
-    private fun getCode() {
-        var apkPath: String? = null
-        try {
-            apkPath = applicationInfo.sourceDir
-            //读取备案号
-            val recordNum = SignRecordTools.readNumbers(apkPath)
-            bind.tvCode.text = "全国注册备案号：$recordNum"
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-    }
 
 }

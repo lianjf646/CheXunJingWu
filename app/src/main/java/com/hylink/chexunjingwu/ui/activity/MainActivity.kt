@@ -44,7 +44,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-    var pushReceiver = object : BroadcastReceiver() {
+    private var pushReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             var action = intent!!.action
             if (PushMessage.buildupBroadcastAction4PushMessage(packageName).equals(action)) {
@@ -93,9 +93,6 @@ class MainActivity : BaseActivity() {
 
         }, 1, 3, TimeUnit.SECONDS)
         mFuture.run {}
-
-
-
 
         PermissionX.init(this)
             .permissions(
@@ -167,7 +164,7 @@ class MainActivity : BaseActivity() {
         return isIgnoring
     }
 
-    fun requestIgnoreBatteryOptimizations() {
+    private fun requestIgnoreBatteryOptimizations() {
         var intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
         intent.data = Uri.parse("package:$packageName")
         goSettings.launch(intent)

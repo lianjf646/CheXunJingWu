@@ -63,7 +63,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
-            android:text="警号：347583249"
+            android:text="版本：347583249"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_22" />
+
+        <TextView
+            android:id="@+id/tv_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="版本：347583249"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_22" />
+        <TextView
+            android:id="@+id/tv_recordNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="版本：347583249"
             android:textColor="#ffffff"
             android:textSize="@dimen/sp_22" />
     </LinearLayout>
