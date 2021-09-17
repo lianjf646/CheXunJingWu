@@ -18,7 +18,6 @@ import com.hylink.chexunjingwu.base.BaseViewModelActivity
 import com.hylink.chexunjingwu.databinding.ActivityNearbyPoliceZhejiangBinding
 import com.hylink.chexunjingwu.http.api.HttpResponseState
 import com.hylink.chexunjingwu.http.response.GetPatrolListResponse
-import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.http.response.QueryPeripheryVehicleResponse
 import com.hylink.chexunjingwu.tools.*
 import com.hylink.chexunjingwu.util.LocationInfoFields
@@ -42,8 +41,6 @@ class ZheJiangNearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceFor
     var markerJingChe: ArrayList<Marker> = ArrayList()
     var markerDjj: ArrayList<Marker> = ArrayList()
 
-    var userInfo: HomeLoginResponse.Data.Data.User =
-        DataHelper.getData(DataHelper.loginUserInfo) as HomeLoginResponse.Data.Data.User;
     var isFirst = true;
     private var mContentObserver = object : ContentObserver(Handler(Looper.myLooper()!!)) {
         override fun onChange(selfChange: Boolean) {
@@ -200,7 +197,7 @@ class ZheJiangNearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceFor
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 clearMarkList(markerDjj)
                 if (!bind.chbDuijiang.isChecked) return
-                mViewModel.getPatrolList(userInfo.idCard)
+                mViewModel.getPatrolList(idCard!!)
             }
         })
     }

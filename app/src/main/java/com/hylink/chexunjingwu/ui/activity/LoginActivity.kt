@@ -3,20 +3,25 @@ package com.hylink.chexunjingwu.ui.activity
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Observer
-import cn.com.cybertech.pdk.UserInfo
+import cn.com.cybertech.pdk.auth.Oauth2AccessToken
+import cn.com.cybertech.pdk.auth.PstoreAuth
+import cn.com.cybertech.pdk.auth.PstoreAuthListener
+import cn.com.cybertech.pdk.auth.sso.SsoHandler
+import cn.com.cybertech.pdk.exception.PstoreException
 import com.dylanc.viewbinding.binding
+import com.fri.libfriapkrecord.read.SignRecordTools
 import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.base.BaseViewModelActivity
 import com.hylink.chexunjingwu.databinding.ActivityLoginBinding
 import com.hylink.chexunjingwu.http.api.HttpResponseState
 import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
-import com.hylink.chexunjingwu.tools.ZheJiangLog
 import com.hylink.chexunjingwu.tools.md5
 import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.viewmodel.LoginViewModel
@@ -94,20 +99,9 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
         }
 //        var idCard = "339005199210247317";
 //        mViewModel.login(idCard)
+        getToken();
+        getCode();
 
-        var user = UserInfo.getUser(this)
-        if (user == null) {
-            showNormal("通过sdk 获取用户信息失败")
-            return
-        }
-        if (user?.idCard.isNullOrEmpty()) {
-            showNormal("通过sdk 获取身份证号不存在")
-            return
-        }
-        var idCard = user.idCard;
-        mViewModel.login(idCard)
-        showNormal(idCard)
-        bind.tvIdCard.text = "idCard:$idCard"
 
     }
 
@@ -167,11 +161,49 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             httpResponse?.data?.data?.user?.job!!
         )
 
-        ZheJiangLog.login()
+
         var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
 
+    private fun getToken() {
+
+        //330000100115
+        var mAuth = PstoreAuth(this, BuildConfig.REG_ID);
+        var mSsoHandler = SsoHandler(this, mAuth);
+
+        mSsoHandler.authorize(object : PstoreAuthListener {
+            override fun onComplete(p0: Oauth2AccessToken?) {
+//                Log.e(">>>>>", "onComplete: " + p0!!.token)
+                bind.tvToken.text == p0!!.token
+            }
+
+            override fun onPstoreException(p0: PstoreException?) {
+                Log.e(">>>>>", "onPstoreException: " + p0.toString() + p0!!.message)
+//                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
+//                finish()
+                showNormal(p0!!.message!!)
+            }
+
+            override fun onCancel() {
+//                Log.e(">>>>>", "onCancel: ")
+//                startActivity(Intent(this@SplashActivity, LoginActivity::class.java));
+//                finish()
+            }
+        })
+    }
+
+    private fun getCode() {
+        var apkPath: String? = null
+        try {
+            apkPath = applicationInfo.sourceDir
+            //读取备案号
+            val recordNum = SignRecordTools.readNumbers(apkPath)
+            bind.tvCode.text = "全国注册备案号：$recordNum"
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
 }

@@ -17,7 +17,7 @@ android {
         versionName "1.0.0.9"
         flavorDimensions "versionCode"
         multiDexEnabled true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -65,24 +65,8 @@ android {
     productFlavors {
 
 
-        互联网 {
-            applicationId "com.hylink.chexunjingwu"
-            buildConfigField("String", "BASE_URL", "\"http://192.168.104.151:7701/\"")
-//            buildConfigField("String", "BASE_URL", "\"http://111.42.38.120:9000/gacz-data-test-service/\"")
-            buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
-            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
 
-            manifestPlaceholders = [
-                    ENTRY_ACTION  : "android.intent.action.MAIN",
-                    ENTRY_CATEGORY: "android.intent.category.LAUNCHER",
-                    APP_NAME      : "车巡警务协同"
-            ]
-            buildConfigField("String", "REG_ID", "\"330000100115\"")
-            buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
-
-        }
-
-        浙江 {
+        萧山 {
             applicationId "com.hylink.chexunjingwu"
             buildConfigField("String", "BASE_URL", "\"http://20.65.2.12:1728/gacz-data-service/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://20.65.3.207:1887\"")
@@ -101,7 +85,6 @@ android {
 
         钱塘 {
             applicationId "com.hylink.qiantang_chexunjingwu"
-
             buildConfigField("String", "BASE_URL", "\"http://20.65.2.12:3880/gacz-data-service/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://20.65.3.207:1886\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
@@ -117,7 +100,7 @@ android {
         }
 
         浙江测试 {
-            applicationId "com.hylink.zhejiang_chexunjingwu"
+            applicationId "com.hylink.chexunjingwu"
             buildConfigField("String", "BASE_URL", "\"http://20.65.1.191:8081/platform/redirect/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")

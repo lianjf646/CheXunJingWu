@@ -13,7 +13,6 @@ import com.hylink.chexunjingwu.base.BaseVMFragment
 import com.hylink.chexunjingwu.bean.QRcodeInfo
 import com.hylink.chexunjingwu.databinding.FragmentHomeBinding
 import com.hylink.chexunjingwu.http.api.HttpResponseState
-import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.OnClickViewListener
 import com.hylink.chexunjingwu.ui.activity.*
@@ -24,16 +23,12 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
 
     var imei: String? = null
     val bind: FragmentHomeBinding by binding()
-    var userInfo: HomeLoginResponse.Data.Data.User =
-        DataHelper.getData(DataHelper.loginUserInfo) as HomeLoginResponse.Data.Data.User;
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bind.linearQrcode.setOnClickListener(object : OnClickViewListener() {
             override fun onClickSuc(v: View?) {
                 var intent = Intent(activity, SaoMaActivity::class.java)
                 getSaoMaData.launch(intent);
-
             }
         })
 
@@ -46,32 +41,31 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
             }
         })
 
-        bind.btnJiechujing.setOnClickListener(object : OnClickViewListener() {
-            override fun onClickSuc(v: View?) {
-                if (TextUtils.isEmpty(imei)) return
-                val intent = Intent(context, JieChuJingActivity::class.java)
-                intent.putExtra("imei", imei)
-                startActivity(intent)
-            }
-
-        })
-
-        bind.btnCheck.setOnClickListener(object : OnClickViewListener() {
-            override fun onClickSuc(v: View?) {
-                if (TextUtils.isEmpty(imei)) return
-                val intent = Intent(context, CheckActivity::class.java)
-                startActivity(intent)
-            }
-
-        })
-
-        bind.btnZhiling.setOnClickListener(object : OnClickViewListener() {
-            override fun onClickSuc(v: View?) {
-                if (TextUtils.isEmpty(imei)) return
-                val intent = Intent(context, InstructionsActivity::class.java)
-                startActivity(intent)
-            }
-        })
+//        bind.btnJiechujing.setOnClickListener(object : OnClickViewListener() {
+//            override fun onClickSuc(v: View?) {
+//                if (TextUtils.isEmpty(imei)) return
+//                val intent = Intent(context, JieChuJingActivity::class.java)
+//                intent.putExtra("imei", imei)
+//                startActivity(intent)
+//            }
+//
+//        })
+//        bind.btnCheck.setOnClickListener(object : OnClickViewListener() {
+//            override fun onClickSuc(v: View?) {
+//                if (TextUtils.isEmpty(imei)) return
+//                val intent = Intent(context, CheckActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//        })
+//
+//        bind.btnZhiling.setOnClickListener(object : OnClickViewListener() {
+//            override fun onClickSuc(v: View?) {
+//                if (TextUtils.isEmpty(imei)) return
+//                val intent = Intent(context, InstructionsActivity::class.java)
+//                startActivity(intent)
+//            }
+//        })
 
         bind.btnSetting.setOnClickListener(object : OnClickViewListener() {
             override fun onClickSuc(v: View?) {
@@ -83,29 +77,16 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
 
         bind.btnNearbyPoliceForces.setOnClickListener(object : OnClickViewListener() {
             override fun onClickSuc(v: View?) {
-//                if (government.isEmpty()) return
-//                val intent = Intent()
-//                if (BuildConfig.FLAVOR.equals("互联网")) {
-//                    intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
-//                } else {
-//                    intent.setClass(activity, NearbyPoliceForcesWuHaiActivity::class.java)
-//                }
-//                intent.putExtra("government", government)
-//                startActivity(intent)
-
-                var code = userInfo?.group?.code
-                var idCard = userInfo?.idCard
                 var intent = Intent()
-                intent.putExtra("code", code)
-                intent.putExtra("idCard", idCard)
-//                intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
+                intent.putExtra("code", DataHelper.deptId)
+                intent.putExtra("idCard", DataHelper.idCard)
                 intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
                 startActivity(intent)
             }
         })
 
-        var idCard = userInfo?.idCard;
-        mViewModel.signStatus(idCard)
+
+        mViewModel.signStatus(DataHelper.idCard!!)
     }
 
     private val getSaoMaData =
@@ -113,8 +94,7 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
             if (it.resultCode == RESULT_OK) {
                 val result = it?.data?.getStringExtra(CodeUtils.RESULT_STRING) ?: "二维码失效"
                 var uuid = Gson().fromJson(result, QRcodeInfo::class.java).uuid
-                var idCard = userInfo?.idCard;
-                mViewModel.ifTimeOut(uuid, idCard)
+                mViewModel.ifTimeOut(uuid, DataHelper.idCard!!)
             }
         }
 

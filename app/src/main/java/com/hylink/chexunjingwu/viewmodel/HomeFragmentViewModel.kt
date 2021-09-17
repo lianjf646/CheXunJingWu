@@ -55,7 +55,7 @@ class HomeFragmentViewModel : BaseViewModel() {
 
                     })
                 delay(10 * 1000)
-//                break
+
             }
         }
 
