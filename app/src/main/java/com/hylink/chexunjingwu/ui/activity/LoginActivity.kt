@@ -3,20 +3,13 @@ package com.hylink.chexunjingwu.ui.activity
 import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Observer
 import cn.com.cybertech.pdk.UserInfo
-import cn.com.cybertech.pdk.auth.Oauth2AccessToken
-import cn.com.cybertech.pdk.auth.PstoreAuth
-import cn.com.cybertech.pdk.auth.PstoreAuthListener
-import cn.com.cybertech.pdk.auth.sso.SsoHandler
-import cn.com.cybertech.pdk.exception.PstoreException
 import com.dylanc.viewbinding.binding
-import com.fri.libfriapkrecord.read.SignRecordTools
 import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.base.BaseViewModelActivity
 import com.hylink.chexunjingwu.databinding.ActivityLoginBinding
@@ -101,8 +94,7 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
         }
 //        var idCard = "339005199210247317";
 //        mViewModel.login(idCard)
-        getToken();
-        getCode();
+
         var user = UserInfo.getUser(this)
         if (user == null) {
             showNormal("通过sdk 获取用户信息失败")
