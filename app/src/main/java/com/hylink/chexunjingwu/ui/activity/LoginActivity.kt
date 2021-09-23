@@ -17,7 +17,6 @@ import com.hylink.chexunjingwu.http.api.HttpResponseState
 import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.ZheJiangLog
-import com.hylink.chexunjingwu.tools.md5
 import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.viewmodel.LoginViewModel
 import com.permissionx.guolindev.PermissionX
@@ -43,7 +42,7 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
                 showNormal("请输入密码")
                 return@OnClickListener
             }
-            mViewModel.login(num1, md5(password1));
+            mViewModel.login(num1, password1);
         })
     }
 
@@ -83,17 +82,24 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
 //                    startActivity(intent)
 //                    finish()
                 } else {
-                    showNormal("These permissions are denied: $deniedList")
+//                    showNormal("These permissions are denied: $deniedList")
 //                    showRequestReasonDialog(filteredList, "摄像机权限是程序必须依赖的权限", "我已明白")
 
                 }
             }
-
         if (BuildConfig.FLAVOR == "互联网") {
+
+            mViewModel.login("0","0");
             return
         }
-//        var idCard = "339005199210247317";
-//        mViewModel.login(idCard)
+
+
+        if (BuildConfig.FLAVOR == "浙江测试") {
+            var idCard = "33010319810702131X";
+            mViewModel.login(idCard)
+            return
+        }
+
 
         var user = UserInfo.getUser(this)
         if (user == null) {
@@ -104,9 +110,8 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             showNormal("通过sdk 获取身份证号不存在")
             return
         }
-        var idCard = user.idCard;
+        var idCard = user.idCard
         mViewModel.login(idCard)
-        showNormal(idCard)
         bind.tvIdCard.text = "idCard:$idCard"
 
     }

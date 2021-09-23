@@ -21,7 +21,6 @@ import com.hylink.chexunjingwu.http.AndroidMqttClient
 import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.ZheJiangLog
-import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.ui.fragment.HomeFragment
 import com.hylink.chexunjingwu.ui.fragment.MineFragment
 import com.hylink.chexunjingwu.util.PushBroadcastReceiver
@@ -34,6 +33,7 @@ class MainActivity : BaseActivity() {
     private val bind: ActivityMainBinding by binding();
     private val homeFragment = HomeFragment();
     private val mineFragment = MineFragment();
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     val goSettings =
@@ -69,12 +69,13 @@ class MainActivity : BaseActivity() {
             .commitAllowingStateLoss()
 
         NotificationUtils.areNotificationsEnabled()
-        val b: Boolean = isIgnoringBatteryOptimizations()
-        if (!b) {
-            requestIgnoreBatteryOptimizations()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val b: Boolean = isIgnoringBatteryOptimizations()
+            if (!b) {
+                requestIgnoreBatteryOptimizations()
+            }
         }
         ZheJiangLog.create()
-
         var filter = IntentFilter();
         filter.addAction(PushMessage.buildupBroadcastAction4PushMessage(getPackageName()))
         registerReceiver(pushReceiver, filter)
@@ -119,7 +120,7 @@ class MainActivity : BaseActivity() {
 //                    startActivity(intent)
 //                    finish()
                 } else {
-                    showNormal("These permissions are denied: $deniedList")
+//                    showNormal("These permissions are denied: $deniedList")
 //                    showRequestReasonDialog(filteredList, "摄像机权限是程序必须依赖的权限", "我已明白")
 
                 }
@@ -154,7 +155,7 @@ class MainActivity : BaseActivity() {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun isIgnoringBatteryOptimizations(): Boolean {
         var isIgnoring = false
         val powerManager = getSystemService(POWER_SERVICE) as PowerManager

@@ -17,7 +17,8 @@ import java.util.concurrent.TimeUnit
 object ApiEngine {
     private val DEFAULT_TIME_OUT = 10L
     private var retrofit: Retrofit
-//    val cookieJar =
+
+    //    val cookieJar =
 //        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.app))
     init {
         val httpLogging =
@@ -43,7 +44,7 @@ object ApiEngine {
 //            callTimeout(DEFAULT_TIME_OUT, TimeUnit.SECONDS)
             addInterceptor(httpLogging)
 
-            if (BuildConfig.FLAVOR == "浙江测试"){
+            if (BuildConfig.FLAVOR == "浙江测试") {
                 addInterceptor(ZheJiangInterceptor())
             }
 

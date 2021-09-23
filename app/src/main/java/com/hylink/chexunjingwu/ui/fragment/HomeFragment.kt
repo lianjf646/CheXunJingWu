@@ -33,7 +33,6 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
             override fun onClickSuc(v: View?) {
                 var intent = Intent(activity, SaoMaActivity::class.java)
                 getSaoMaData.launch(intent);
-
             }
         })
 

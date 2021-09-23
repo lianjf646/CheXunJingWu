@@ -45,9 +45,9 @@ class CarInfoActivity : BaseViewModelActivity<CarInfoViewModel>() {
         })
 
         mViewModel.getVerificationPortraitByIdLiveData.observe(this, {
-            if(it?.httpResponseState==HttpResponseState.STATE_SUCCESS){
+            if (it?.httpResponseState == HttpResponseState.STATE_SUCCESS) {
                 var bean = it?.httpResponse?.data
-                glideLoad(bean?.comparison_img!!,bind.ivCaron)
+                glideLoad(bean?.comparison_img!!, bind.ivCaron)
 
                 bind.idFlowlayout.adapter = object : TagAdapter<String>(bean?.tags) {
                     override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
@@ -65,7 +65,7 @@ class CarInfoActivity : BaseViewModelActivity<CarInfoViewModel>() {
                 bind.lv.adapter = adapter
 
                 var adapterError = PersonnelrInfoAdapter()
-                adapterError.dataList =bean.tagesInfoList!!
+                adapterError.dataList = bean.tagesInfoList!!
                 bind.lvError.adapter = adapterError
             }
         })
@@ -78,9 +78,9 @@ class CarInfoActivity : BaseViewModelActivity<CarInfoViewModel>() {
                 finish()
             }
         });
-        val byId = intent!!.getStringExtra("byId")!!
+        val byId = intent?.getStringExtra("byId")!!
         if (byId.isNullOrEmpty()) {
-            var comparison_id = intent!!.getStringExtra("comparison_id")!!
+            var comparison_id = intent?.getStringExtra("comparison_id")!!
             mViewModel.getVerificationPortraitById(GetVerificationPortraitByIdRequest(comparison_id))
         } else {
             mViewModel.getAlarmById(GetAlarmByIdRequest(byId))

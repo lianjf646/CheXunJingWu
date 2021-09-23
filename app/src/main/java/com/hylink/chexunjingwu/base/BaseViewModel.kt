@@ -31,7 +31,9 @@ open class BaseViewModel : ViewModel() {
         ) {
             try {
                 block()
+
                 httpResponseState = HttpResponseState.STATE_SUCCESS
+
             } catch (e: Exception) {
                 httpResponseState = parseError(e)
                 error?.invoke(e) // 捕获ApiCommonResponse类中的异常信息
@@ -40,6 +42,7 @@ open class BaseViewModel : ViewModel() {
             }
         }
     }
+
 
 
     private fun parseError(e: Exception): HttpResponseState {
@@ -96,7 +99,7 @@ open class BaseViewModel : ViewModel() {
                 // TODO 其他错误
                 e.message?.let {
                     Log.e(">>>>>", "其他错误: $it")
-                    showError("其他错误$it")
+//                    showError("其他错误$it")
                 }
                 return HttpResponseState.STATE_UNKNOWN
             }

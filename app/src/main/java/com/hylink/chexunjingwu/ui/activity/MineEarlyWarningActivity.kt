@@ -13,6 +13,8 @@ import com.hylink.chexunjingwu.tools.OnClickViewListener
 import com.hylink.chexunjingwu.ui.adapter.MineEarlyWarningAdapter
 import com.hylink.chexunjingwu.viewmodel.MineEarlyWarningViewModel
 
+//import com.kongzue.dialog.v3.WaitDialog
+
 class MineEarlyWarningActivity : BaseViewModelActivity<MineEarlyWarningViewModel>() {
 
 
@@ -60,6 +62,7 @@ class MineEarlyWarningActivity : BaseViewModelActivity<MineEarlyWarningViewModel
         mViewModel.alarmListLiveData.observe(this, {
             bind.refreshLayout.finishRefresh() //结束刷新
             bind.refreshLayout.finishLoadMore() //结束加载
+//            WaitDialog.dismiss()
             if (it.httpResponseState == HttpResponseState.STATE_SUCCESS) {
                 if (currentPage == 1) {
                     beanList.clear()
@@ -82,6 +85,7 @@ class MineEarlyWarningActivity : BaseViewModelActivity<MineEarlyWarningViewModel
         request.currentPage = currentPage;
         request.showCount = showCount
         request.pd = pdBean
+//        WaitDialog.show(activity, "请稍后")
         mViewModel.alarmList(request)
     }
 

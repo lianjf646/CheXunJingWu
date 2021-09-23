@@ -7,6 +7,7 @@ import com.hylink.chexunjingwu.http.request.AlarmListRequest
 import com.hylink.chexunjingwu.http.response.AlarmListResponse
 import com.hylink.chexunjingwu.repository.MineEarlyWarningRepository
 
+
 class MineEarlyWarningViewModel : BaseViewModel() {
 
     private val mineEarlyWarningRepository by lazy { MineEarlyWarningRepository() }
@@ -14,6 +15,7 @@ class MineEarlyWarningViewModel : BaseViewModel() {
     val alarmListLiveData = MutableLiveData<HttpData<AlarmListResponse>>()
 
     fun alarmList(request: AlarmListRequest) {
+
         var httpData: HttpData<AlarmListResponse> = HttpData();
 
         launch(block = {
