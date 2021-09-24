@@ -1,15 +1,12 @@
 package com.hylink.chexunjingwu.ui.activity
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.view.View
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Observer
-import cn.com.cybertech.pdk.UserInfo
 import com.dylanc.viewbinding.binding
+import com.google.gson.Gson
 import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.base.BaseViewModelActivity
 import com.hylink.chexunjingwu.databinding.ActivityLoginBinding
@@ -20,14 +17,13 @@ import com.hylink.chexunjingwu.tools.ZheJiangLog
 import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.viewmodel.LoginViewModel
 import com.permissionx.guolindev.PermissionX
+import com.xinghuo.mpaas.librarysso.LoginUserInfo
+import com.xinghuo.mpaas.librarysso.SSOContext
+import com.xinghuo.mpaas.librarysso.VerifyResponseCallback
 
 
 class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
     private val bind: ActivityLoginBinding by binding();
-    val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "login_detail")
-    val NUM = stringPreferencesKey("num")
-    val PASSWORD = stringPreferencesKey("password")
-    val IS_REMEMBER = booleanPreferencesKey("isRemember")
 
     override fun viewOnClick() {
         bind.btn.setOnClickListener(View.OnClickListener {
@@ -48,14 +44,6 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
 
 
     override fun initData() {
-//        GlobalScope.launch(Dispatchers.Main) {
-//            dataStore.data
-//                .collect {
-//                    bind.etNum.setText(it[NUM])
-//                    bind.etPassword.setText(it[PASSWORD])
-//                    bind.chb.isChecked = it[IS_REMEMBER] == true
-//                }
-//        }
 
         PermissionX.init(this)
             .permissions(
@@ -78,9 +66,7 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             }
             .request { allGranted, grantedList, deniedList ->
                 if (allGranted) {
-//                    var intent = Intent(this, LoginActivity::class.java)
-//                    startActivity(intent)
-//                    finish()
+
                 } else {
 //                    showNormal("These permissions are denied: $deniedList")
 //                    showRequestReasonDialog(filteredList, "摄像机权限是程序必须依赖的权限", "我已明白")
@@ -88,32 +74,39 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
                 }
             }
         if (BuildConfig.FLAVOR == "互联网") {
-
-            mViewModel.login("0","0");
+            mViewModel.login("0", "0");
+            return
+        }
+        var token = intent.getStringExtra("token")!!
+        if (token.isNullOrEmpty()) {
+            showNormal("token未获取到")
             return
         }
 
+        SSOContext.verifyToken(token, object : VerifyResponseCallback {
+            override fun responseSuccess(p0: String?) {
+                runOnUiThread {
+                    val userInfo = Gson().fromJson(p0, LoginUserInfo::class.java)
+                    if (userInfo != null && userInfo.code == 200) {
+                        bind.tvIdCard.text = "idCard:$userInfo.data.idcard"
+                        mViewModel.login(userInfo.data.idcard)
+                    } else {
+                        bind.tvIdCard.text = "idCard:$userInfo.data.idcard"
+                        if (p0 != null) {
+                            showNormal(p0)
+                        };
+                    }
+                }
+            }
 
-        if (BuildConfig.FLAVOR == "浙江测试") {
-            var idCard = "33010319810702131X";
-            mViewModel.login(idCard)
-            return
-        }
-
-
-        var user = UserInfo.getUser(this)
-        if (user == null) {
-            showNormal("通过sdk 获取用户信息失败")
-            return
-        }
-        if (user?.idCard.isNullOrEmpty()) {
-            showNormal("通过sdk 获取身份证号不存在")
-            return
-        }
-        var idCard = user.idCard
-        mViewModel.login(idCard)
-        bind.tvIdCard.text = "idCard:$idCard"
-
+            override fun responseFail(p0: String?) {
+                runOnUiThread {
+                    if (p0 != null) {
+                        showNormal(p0)
+                    }
+                }
+            }
+        })
     }
 
     override fun observe() {
@@ -125,20 +118,6 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
     }
 
     private fun goMainAct(httpResponse: HomeLoginResponse) {
-//                GlobalScope.launch {
-//                   if (bind.chb.isChecked) {
-//                       dataStore.edit { value ->
-//                           value[NUM] = bind.etNum.text.toString()
-//                           value[PASSWORD] = bind.etPassword.text.toString()
-//                           value[IS_REMEMBER] = bind.chb.isChecked
-//                       }
-//                   } else {
-//                       dataStore.edit {
-//                           it.clear()
-//                       }
-//                   }
-//               }
-
         if (httpResponse == null) {
             showNormal("未获取到用户信息4")
             return

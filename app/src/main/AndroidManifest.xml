@@ -98,17 +98,15 @@
         android:roundIcon="@mipmap/logo_a"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.hylink.chexunjingwu.ui.activity.SplashActivity">
+        <activity android:name="com.hylink.chexunjingwu.ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="${ENTRY_ACTION}" />
                 <category android:name="${ENTRY_CATEGORY}" />
+
+                <data
+                    android:host="com.xinghuo.mpaas.login"
+                    android:scheme="access" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.hylink.chexunjingwu.ui.activity.LoginActivity"
-            android:screenOrientation="portrait">
-
         </activity>
 
         <activity
@@ -171,7 +169,7 @@
 
         <activity
             android:name="com.hylink.chexunjingwu.ui.activity.ZheJiangNearbyPoliceForcesActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
 
         </activity>
 
