@@ -20,7 +20,7 @@ class LoginViewModel : BaseViewModel() {
             httpData.httpResponse = loginRepository.login(request);
         }, complete = {
             httpData.httpResponseState = it;
-            loginLiveData.value = httpData;
+            loginLiveData.postValue(httpData)
         })
     }
 
@@ -33,7 +33,7 @@ class LoginViewModel : BaseViewModel() {
             httpData.httpResponse = loginRepository.login(request);
         }, complete = {
             httpData.httpResponseState = it;
-            loginLiveData.value = httpData;
+            loginLiveData.postValue(httpData)
         })
     }
 }

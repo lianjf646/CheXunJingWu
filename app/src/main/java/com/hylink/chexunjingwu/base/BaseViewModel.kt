@@ -1,6 +1,5 @@
 package com.hylink.chexunjingwu.base
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
@@ -17,8 +16,6 @@ import kotlin.Unit as Unit1
 typealias Error = suspend (e: Exception) -> Unit1
 
 open class BaseViewModel : ViewModel() {
-
-
     protected open fun launch(
         block: suspend () -> Unit1,
         error: Error? = null,
@@ -44,8 +41,8 @@ open class BaseViewModel : ViewModel() {
     }
 
 
-
     private fun parseError(e: Exception): HttpResponseState {
+        e.printStackTrace()
         when (e) {
             is ApiException -> {
                 when (e.errorCode) {
@@ -95,15 +92,21 @@ open class BaseViewModel : ViewModel() {
                 showError("JSON解析错误" + e.message)
                 return HttpResponseState.STATE_ERROR
             }
+
             else -> {
                 // TODO 其他错误
                 e.message?.let {
-                    Log.e(">>>>>", "其他错误: $it")
-//                    showError("其他错误$it")
+
+                    if (it == "Job was cancelled") {
+                    } else {
+                        showError("其他错误$it")
+                    }
                 }
                 return HttpResponseState.STATE_UNKNOWN
             }
+
         }
+
     }
 
 

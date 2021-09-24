@@ -223,7 +223,6 @@ class ZheJiangNearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceFor
             val xy: DoubleArray =
                 GPSUtil.gps84_To_Gcj02(dto.gps_point[1], dto.gps_point[0])
             val p1 = LatLng(xy[0], xy[1])
-            Log.e("!!!!!", "showJcMark: " + xy[0] + "----" + xy[1])
             var marker =
                 if (dto.is_online === 1) {
                     lMap!!.addMarker(

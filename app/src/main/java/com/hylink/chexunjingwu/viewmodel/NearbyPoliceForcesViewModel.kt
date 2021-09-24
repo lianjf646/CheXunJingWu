@@ -15,18 +15,16 @@ class NearbyPoliceForcesViewModel : BaseViewModel() {
     val queryPeripheryVehicleLD = MutableLiveData<HttpData<QueryPeripheryVehicleResponse>>()
 
     val getPatrolListVehicleLD = MutableLiveData<HttpData<GetPatrolListResponse>>()
-
-
     fun queryPeripheryVehicle() {
         var httpData: HttpData<QueryPeripheryVehicleResponse> = HttpData();
         var request = QueryPeripheryVehicleRequest();
         launch(block = {
-            var ddd =
+            var response =
                 repository.queryPeripheryVehicle(request)
-            httpData.httpResponse = ddd
+            httpData.httpResponse = response
         }, complete = {
             httpData.httpResponseState = it;
-            queryPeripheryVehicleLD.value = httpData;
+            queryPeripheryVehicleLD.postValue(httpData)
         })
     }
 
@@ -34,12 +32,11 @@ class NearbyPoliceForcesViewModel : BaseViewModel() {
         var httpData: HttpData<GetPatrolListResponse> = HttpData();
         var request = GetPatrolListRequest(idCard = idCard);
         launch(block = {
-            var ddd =
-                repository.getPatrolList(request)
-            httpData.httpResponse = ddd
+            var getPatrolListResponse = repository.getPatrolList(request)
+            httpData.httpResponse = getPatrolListResponse
         }, complete = {
             httpData.httpResponseState = it;
-            getPatrolListVehicleLD.value = httpData;
+            getPatrolListVehicleLD.postValue(httpData)
         })
     }
 

@@ -51,7 +51,7 @@ class HomeFragmentViewModel : BaseViewModel() {
                 },
                     complete = {
                         httpData.httpResponseState = it;
-                        signStatusLiveData.value = httpData;
+                        signStatusLiveData.postValue(httpData)
 
                     })
                 delay(10 * 1000)
