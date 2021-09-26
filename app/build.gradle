@@ -92,7 +92,7 @@ android {
             manifestPlaceholders = [
                     ENTRY_ACTION    : "android.intent.action.MAIN",
                     ENTRY_CATEGORY  : "android.intent.category.LAUNCHER",
-                    APP_NAME        : "车巡警务协同",
+                    APP_NAME        : "天津车巡警务协同",
                     CxjwFileProvider: "com.hylink.chexunjingwu.contentprovider.CxjwFileProvider"
 
             ]

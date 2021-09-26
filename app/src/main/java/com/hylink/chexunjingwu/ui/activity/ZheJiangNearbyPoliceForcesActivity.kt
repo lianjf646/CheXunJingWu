@@ -198,10 +198,21 @@ class ZheJiangNearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceFor
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 clearMarkList(markerDjj)
                 if (!bind.chbDuijiang.isChecked) return
+//                progressDialog.show()
                 mViewModel.getPatrolList(userInfo.idCard)
             }
         })
+//        initDialog();
     }
+
+//    private lateinit var progressDialog: ProgressDialog
+//    fun initDialog() {
+//        progressDialog = ProgressDialog(activity);
+//        progressDialog.setIndeterminate(false);//循环滚动
+//        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+////        progressDialog.setMessage("loading...");
+//        progressDialog.setCancelable(false);//false不能取消显示，true可以取消显示
+//    }
 
     override fun observe() {
 
@@ -211,6 +222,7 @@ class ZheJiangNearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceFor
         })
 
         mViewModel.getPatrolListVehicleLD.observe(this, {
+//            progressDialog.dismiss()
             if (it?.httpResponseState != HttpResponseState.STATE_SUCCESS) return@observe
             intercomResult(it?.httpResponse?.result?.intercomList!!)
         })
