@@ -47,6 +47,9 @@ object ApiEngine {
             if (BuildConfig.FLAVOR == "浙江测试") {
                 addInterceptor(ZheJiangInterceptor())
             }
+            if (BuildConfig.FLAVOR=="TianJin"){
+                addInterceptor(TianJinInterceptor())
+            }
 
 //            cache(cache)
 //            cookieJar(cookieJar)

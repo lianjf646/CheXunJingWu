@@ -43,35 +43,35 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
 
     private fun getToken() {
 
-        var mAuth = PstoreAuth(activity, BuildConfig.REG_ID);
-        var mSsoHandler = SsoHandler(activity, mAuth);
-
-        mSsoHandler.authorize(object : PstoreAuthListener {
-            override fun onComplete(p0: Oauth2AccessToken?) {
-                bind.tvToken.text = "token:${p0?.token}"
-
-            }
-
-            override fun onPstoreException(p0: PstoreException?) {
-                showNormal(p0?.message!!)
-
-            }
-
-            override fun onCancel() {
-
-            }
-        })
+//        var mAuth = PstoreAuth(activity, BuildConfig.REG_ID);
+//        var mSsoHandler = SsoHandler(activity, mAuth);
+//
+//        mSsoHandler.authorize(object : PstoreAuthListener {
+//            override fun onComplete(p0: Oauth2AccessToken?) {
+//                bind.tvToken.text = "token:${p0?.token}"
+//
+//            }
+//
+//            override fun onPstoreException(p0: PstoreException?) {
+//                showNormal(p0?.message!!)
+//
+//            }
+//
+//            override fun onCancel() {
+//
+//            }
+//        })
     }
 
     private fun getCode() {
-        var apkPath: String? = null
-        try {
-            apkPath = activity.applicationInfo.sourceDir
-            //读取备案号
-            val recordNum = SignRecordTools.readNumbers(apkPath)
-            bind.tvRecordNum.text = "备案号:${recordNum}"
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+//        var apkPath: String? = null
+//        try {
+//            apkPath = activity.applicationInfo.sourceDir
+//            //读取备案号
+//            val recordNum = SignRecordTools.readNumbers(apkPath)
+//            bind.tvRecordNum.text = "备案号:${recordNum}"
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
     }
 }

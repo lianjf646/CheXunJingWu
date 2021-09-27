@@ -82,17 +82,17 @@ android {
             buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
 
         }
-        天津 {
+        TianJin {
             applicationId "com.hylink.chexunjingwu"
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.104.151:7701/\"")
-            buildConfigField("String", "BASE_URL", "\"http://111.42.38.120:9000/gacz-data-test-service/\"")
+            buildConfigField("String", "BASE_URL", "\"http://17.22.40.230/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
 
             manifestPlaceholders = [
                     ENTRY_ACTION    : "android.intent.action.MAIN",
                     ENTRY_CATEGORY  : "android.intent.category.LAUNCHER",
-                    APP_NAME        : "天津车巡警务协同",
+                    APP_NAME        : "智慧警车",
                     CxjwFileProvider: "com.hylink.chexunjingwu.contentprovider.CxjwFileProvider"
 
             ]
@@ -109,7 +109,7 @@ android {
             variant.outputs.all {
 //                variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + '/outputs/' + versionName)  //指定apk输出目录
                 //这里修改apk文件名
-                outputFileName = "czxk${variant.productFlavors[0].name}_v.${versionName}_${variant.buildType.getName()}.apk"
+                outputFileName = "zhjc${variant.productFlavors[0].name}_v.${versionName}_${variant.buildType.getName()}.apk"
             }
     }
 
