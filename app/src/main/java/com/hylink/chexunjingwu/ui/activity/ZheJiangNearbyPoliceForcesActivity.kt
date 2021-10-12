@@ -205,14 +205,7 @@ class ZheJiangNearbyPoliceForcesActivity : BaseViewModelActivity<NearbyPoliceFor
 //        initDialog();
     }
 
-//    private lateinit var progressDialog: ProgressDialog
-//    fun initDialog() {
-//        progressDialog = ProgressDialog(activity);
-//        progressDialog.setIndeterminate(false);//循环滚动
-//        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-////        progressDialog.setMessage("loading...");
-//        progressDialog.setCancelable(false);//false不能取消显示，true可以取消显示
-//    }
+
 
     override fun observe() {
 

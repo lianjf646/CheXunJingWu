@@ -1,5 +1,6 @@
 package com.hylink.chexunjingwu.ui.activity
 
+import android.app.ProgressDialog
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,8 @@ class MineEarlyWarningActivity : BaseViewModelActivity<MineEarlyWarningViewModel
     private val showCount = 10
     private var adaper = MineEarlyWarningAdapter()
     var beanList = mutableListOf<AlarmListResponse.ListBean>();
+    private lateinit var progressDialog: ProgressDialog
+
     override fun initData() {
         bind.includeTitle.tvTitle.text = "我的预警"
         bind.includeTitle.ibnBack.setOnClickListener(object : OnClickViewListener() {
@@ -40,6 +43,7 @@ class MineEarlyWarningActivity : BaseViewModelActivity<MineEarlyWarningViewModel
                 DividerItemDecoration.VERTICAL
             )
         )
+        initDialog()
         alarmList()
     }
 
@@ -63,6 +67,7 @@ class MineEarlyWarningActivity : BaseViewModelActivity<MineEarlyWarningViewModel
             bind.refreshLayout.finishRefresh() //结束刷新
             bind.refreshLayout.finishLoadMore() //结束加载
 //            WaitDialog.dismiss()
+            progressDialog.dismiss()
             if (it.httpResponseState == HttpResponseState.STATE_SUCCESS) {
                 if (currentPage == 1) {
                     beanList.clear()
@@ -78,8 +83,16 @@ class MineEarlyWarningActivity : BaseViewModelActivity<MineEarlyWarningViewModel
         })
     }
 
+    private fun initDialog() {
+        progressDialog = ProgressDialog(activity);
+        progressDialog.isIndeterminate = false;//循环滚动
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("网络加载中...");
+        progressDialog.setCancelable(false);//false不能取消显示，true可以取消显示
+    }
 
     fun alarmList() {
+        progressDialog.show()
         var request = AlarmListRequest()
         var pdBean = AlarmListRequest.PdBean(imei);
         request.currentPage = currentPage;
