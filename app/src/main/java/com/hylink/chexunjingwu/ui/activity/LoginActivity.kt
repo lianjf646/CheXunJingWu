@@ -73,7 +73,7 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
 
                 }
             }
-        if (BuildConfig.FLAVOR == "互联网") {
+        if (BuildConfig.FLAVOR == "测试") {
             mViewModel.login("0", "0");
             return
         }

@@ -16,6 +16,7 @@ import com.hylink.chexunjingwu.http.api.HttpResponseState
 import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.tools.OnClickViewListener
+import com.hylink.chexunjingwu.tools.showError
 import com.hylink.chexunjingwu.ui.activity.*
 import com.hylink.chexunjingwu.viewmodel.HomeFragmentViewModel
 import com.uuzuche.lib_zxing.activity.CodeUtils
@@ -111,9 +112,14 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == RESULT_OK) {
                 val result = it?.data?.getStringExtra(CodeUtils.RESULT_STRING) ?: "二维码失效"
-                var uuid = Gson().fromJson(result, QRcodeInfo::class.java).uuid
-                var idCard = userInfo?.idCard;
-                mViewModel.ifTimeOut(uuid, idCard)
+                try {
+                    var uuid = Gson().fromJson(result, QRcodeInfo::class.java).uuid
+                    var idCard = userInfo?.idCard;
+                    mViewModel.ifTimeOut(uuid, idCard)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    showError("解析异常:$result")
+                }
             }
         }
 

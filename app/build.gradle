@@ -64,7 +64,7 @@ android {
      */
     productFlavors {
 
-        互联网 {
+        测试 {
             applicationId "com.hylink.chexunjingwu"
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.104.151:7701/\"")
             buildConfigField("String", "BASE_URL", "\"http://111.42.38.120:9000/gacz-data-test-service/\"")
