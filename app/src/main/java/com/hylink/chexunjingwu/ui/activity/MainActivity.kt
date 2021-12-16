@@ -60,7 +60,6 @@ class MainActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun initData() {
-
         supportFragmentManager.beginTransaction()
             .add(R.id.framelayout, homeFragment)
             .add(R.id.framelayout, mineFragment)
