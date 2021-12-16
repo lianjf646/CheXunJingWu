@@ -7,14 +7,14 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-
+    def dateNum = releaseTime() + num
     defaultConfig {
         //1fshgjzrBTtzqKAeH0uPiOPFuKqDvR50
         applicationId "com.hylink.chexunjingwu"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 16
-        versionName "1.0.0.${versionCode}"
+        versionName "1.0.0.${dateNum}"
         flavorDimensions "versionCode"
         multiDexEnabled true
 
@@ -67,16 +67,18 @@ android {
 
         互联网 {
             applicationId "com.hylink.chexunjingwu"
+            versionCode 16
+            versionName "1.0.0.hlw.${dateNum}"
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.104.151:7701/\"")
             buildConfigField("String", "BASE_URL", "\"http://111.42.38.120:9000/gacz-data-test-service/\"")
             buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
 
             manifestPlaceholders = [
-                    ENTRY_ACTION  : "android.intent.action.MAIN",
-                    ENTRY_CATEGORY: "android.intent.category.LAUNCHER",
-                    APP_NAME      : "车巡警务协同",
-                    CxjwFileProvider:"com.hylink.chexunjingwu.contentprovider.CxjwFileProvider"
+                    ENTRY_ACTION    : "android.intent.action.MAIN",
+                    ENTRY_CATEGORY  : "android.intent.category.LAUNCHER",
+                    APP_NAME        : "车巡警务协同",
+                    CxjwFileProvider: "com.hylink.chexunjingwu.contentprovider.CxjwFileProvider"
 
             ]
             buildConfigField("String", "REG_ID", "\"330000100115\"")
@@ -90,10 +92,10 @@ android {
             buildConfigField("String", "TCP_MQTT", "\"tcp://20.65.3.207:1887\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
             manifestPlaceholders = [
-                    ENTRY_ACTION  : "pstore.intent.action.MAIN",
-                    ENTRY_CATEGORY: "pstore.intent.category.APP",
-                    APP_NAME      : "浙江车巡警务协同",
-                    CxjwFileProvider:"com.hylink.chexunjingwu.contentprovider.CxjwFileProvider"
+                    ENTRY_ACTION    : "pstore.intent.action.MAIN",
+                    ENTRY_CATEGORY  : "pstore.intent.category.APP",
+                    APP_NAME        : "浙江车巡警务协同",
+                    CxjwFileProvider: "com.hylink.chexunjingwu.contentprovider.CxjwFileProvider"
 
 
             ]
@@ -111,10 +113,10 @@ android {
             buildConfigField("String", "TCP_MQTT", "\"tcp://20.65.3.207:1886\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
             manifestPlaceholders = [
-                    ENTRY_ACTION  : "pstore.intent.action.MAIN",
-                    ENTRY_CATEGORY: "pstore.intent.category.APP",
-                    APP_NAME      : "钱塘车巡警务协同",
-                    CxjwFileProvider:"com.hylink.qiantang_chexunjingwu.contentprovider.CxjwFileProvider"
+                    ENTRY_ACTION    : "pstore.intent.action.MAIN",
+                    ENTRY_CATEGORY  : "pstore.intent.category.APP",
+                    APP_NAME        : "钱塘车巡警务协同",
+                    CxjwFileProvider: "com.hylink.qiantang_chexunjingwu.contentprovider.CxjwFileProvider"
             ]
 
             buildConfigField("String", "REG_ID", "\"330000101134\"")
@@ -128,10 +130,10 @@ android {
             buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
             buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
             manifestPlaceholders = [
-                    ENTRY_ACTION  : "android.intent.action.MAIN",
-                    ENTRY_CATEGORY: "android.intent.category.LAUNCHER",
-                    APP_NAME      : "浙江测试车巡警务",
-                    CxjwFileProvider:"com.hylink.zhejiang_chexunjingwu.contentprovider.CxjwFileProvider"
+                    ENTRY_ACTION    : "android.intent.action.MAIN",
+                    ENTRY_CATEGORY  : "android.intent.category.LAUNCHER",
+                    APP_NAME        : "浙江测试车巡警务",
+                    CxjwFileProvider: "com.hylink.zhejiang_chexunjingwu.contentprovider.CxjwFileProvider"
             ]
 
             buildConfigField("String", "REG_ID", "\"330000100115\"")
@@ -145,7 +147,7 @@ android {
             variant.outputs.all {
 //                variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + '/outputs/' + versionName)  //指定apk输出目录
                 //这里修改apk文件名
-                outputFileName = "czxk_${versionName}_${variant.productFlavors[0].name}${variant.buildType.getName()}_v${versionCode}.apk"
+                outputFileName = "czxk_v${versionName}.${variant.buildType.getName()}.vc${versionCode}.apk"
             }
     }
 
@@ -245,4 +247,56 @@ dependencies {
 //    implementation 'androidx.paging:paging-runtime:3.0.0-beta01'// 分页功能
 
 
+}
+
+
+//获取编译时间
+static def releaseTime() {
+    return new Date().format("yyMMdd", TimeZone.getTimeZone("PRC"))
+}
+
+//获取当天打包的第几个数量
+def getNum() {
+    //版本号及版本名自增逻辑开始
+    //如果version.properties文件可读则执行操作
+    def versionPropsFile = file('../version.properties')
+    if (versionPropsFile.canRead()) {
+        //载入version.properties
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        //从version.properties根据关键字"VERSION_CODE"取Integer
+        def verCode = versionProps['VERSION_CODE'].toInteger()
+        def verData = versionProps['VERSION_DATA'].toInteger()
+        //判断build模式,如果是特定模式
+        // 则自增版本号,并且写回version.properties文件中
+        String runTasks = gradle.startParameter.taskNames
+        //根据实际情况进行处理
+        println("runTasks" + runTasks)
+
+        if (runTasks.contains("Release") | runTasks.contains("release")) {
+            if (verCode >= 99) {
+                throw new Exception("每天最多生成99个apk")// 如果超过99个需要自己手动变更vc
+            }
+            //版本号自增并写入版本控制文件
+            def locData = Integer.valueOf(releaseTime())
+            if (verData != locData) {
+                versionProps['VERSION_CODE'] = 1.toString()
+                versionProps['VERSION_DATA'] = locData.toString()
+                versionProps.store(versionPropsFile.newWriter(), null)
+                return '01'
+            }
+            versionProps['VERSION_CODE'] = (++verCode).toString()
+            versionProps.store(versionPropsFile.newWriter(), null)
+            if (verCode < 10) {
+                return '0' + verCode
+            }
+            return String.valueOf(verCode)
+        } else {
+//            println("runTasks"+runTasks);
+            return '00'
+        }
+    } else {
+        throw new Exception("Could not find version.properties!")
+    }
+    //版本号及版本名自增逻辑结束
 }
