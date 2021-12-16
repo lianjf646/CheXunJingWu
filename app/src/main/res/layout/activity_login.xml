@@ -25,7 +25,7 @@
             android:visibility="visible" />.
 
         <EditText
-            android:visibility="gone"
+
             android:id="@+id/et_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:textSize="@dimen/sp_21" />
 
         <EditText
-            android:visibility="gone"
+
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             android:textSize="@dimen/sp_21" />
 
         <Button
-            android:visibility="gone"
+
             android:id="@+id/btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:textSize="@dimen/sp_25" />
 
         <CheckBox
-            android:visibility="gone"
+
             android:id="@+id/chb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

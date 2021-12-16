@@ -21,7 +21,7 @@ class HomeFragmentViewModel : BaseViewModel() {
         val request = IfTimeOutRequest(uuid = uuid);
         launch(block = {
             var ifTimeOutResponse = homeFragmentRep.ifTimeOut(request);
-            if (!ifTimeOutResponse?.code.equals("200")) {
+            if (ifTimeOutResponse?.code != "200") {
                 showNormal(ifTimeOutResponse?.msg)
                 return@launch
             }
@@ -31,7 +31,7 @@ class HomeFragmentViewModel : BaseViewModel() {
                 )
             )
             if (loginResponse != null) {
-                if (!loginResponse?.code.equals("200")) {
+                if (loginResponse?.code != "200") {
                     showNormal(loginResponse?.msg)
                     return@launch
                 }

@@ -1,7 +1,6 @@
 package com.hylink.chexunjingwu.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import cn.com.cybertech.pdk.auth.Oauth2AccessToken
 import cn.com.cybertech.pdk.auth.PstoreAuth
@@ -37,8 +36,6 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
                 exitProcess(0)
             }
         })
-        getCode()
-        getToken()
     }
 
     private fun getToken() {

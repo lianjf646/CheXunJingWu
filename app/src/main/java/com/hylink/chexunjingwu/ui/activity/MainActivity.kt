@@ -20,7 +20,6 @@ import com.hylink.chexunjingwu.databinding.ActivityMainBinding
 import com.hylink.chexunjingwu.http.AndroidMqttClient
 import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
-import com.hylink.chexunjingwu.tools.ZheJiangLog
 import com.hylink.chexunjingwu.ui.fragment.HomeFragment
 import com.hylink.chexunjingwu.ui.fragment.MineFragment
 import com.hylink.chexunjingwu.util.PushBroadcastReceiver
@@ -75,10 +74,10 @@ class MainActivity : BaseActivity() {
                 requestIgnoreBatteryOptimizations()
             }
         }
-        ZheJiangLog.create()
-        var filter = IntentFilter();
-        filter.addAction(PushMessage.buildupBroadcastAction4PushMessage(getPackageName()))
-        registerReceiver(pushReceiver, filter)
+
+//        var filter = IntentFilter();
+//        filter.addAction(PushMessage.buildupBroadcastAction4PushMessage(getPackageName()))
+//        registerReceiver(pushReceiver, filter)
 
         val mExecutor = Executors.newSingleThreadScheduledExecutor()
         var mFuture: ScheduledFuture<*>? = null
@@ -130,9 +129,9 @@ class MainActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (pushReceiver != null) {
-            unregisterReceiver(pushReceiver)
-        }
+//        if (pushReceiver != null) {
+//            unregisterReceiver(pushReceiver)
+//        }
     }
 
 

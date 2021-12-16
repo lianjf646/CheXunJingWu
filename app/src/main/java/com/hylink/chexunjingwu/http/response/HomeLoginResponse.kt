@@ -5,8 +5,10 @@ data class HomeLoginResponse(
 ) {
     data class Data(
         val `data`: Data,
-        val error: Any
+        val error: ErrorBean
     ) {
+        data class ErrorBean(var code: String, var text: String)
+
         data class Data(
             val menu: List<Any>,
             val token: String,

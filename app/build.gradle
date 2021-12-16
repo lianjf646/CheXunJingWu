@@ -83,61 +83,6 @@ android {
             buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
 
         }
-
-//        浙江 {
-//            applicationId "com.hylink.chexunjingwu"
-//            buildConfigField("String", "BASE_URL", "\"http://20.65.2.12:1728/gacz-data-service/\"")
-//            buildConfigField("String", "TCP_MQTT", "\"tcp://20.65.3.207:1887\"")
-//            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
-//            manifestPlaceholders = [
-//                    ENTRY_ACTION    : "pstore.intent.action.MAIN",
-//                    ENTRY_CATEGORY  : "pstore.intent.category.APP",
-//                    APP_NAME        : "浙江车巡警务协同",
-//                    CxjwFileProvider: "com.hylink.chexunjingwu.contentprovider.CxjwFileProvider"
-//
-//
-//            ]
-//
-//            buildConfigField("String", "REG_ID", "\"330000100115\"")
-//            buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
-//
-//
-//        }
-//
-//        钱塘 {
-//            applicationId "com.hylink.qiantang_chexunjingwu"
-//
-//            buildConfigField("String", "BASE_URL", "\"http://20.65.2.12:3880/gacz-data-service/\"")
-//            buildConfigField("String", "TCP_MQTT", "\"tcp://20.65.3.207:1886\"")
-//            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
-//            manifestPlaceholders = [
-//                    ENTRY_ACTION    : "pstore.intent.action.MAIN",
-//                    ENTRY_CATEGORY  : "pstore.intent.category.APP",
-//                    APP_NAME        : "钱塘车巡警务协同",
-//                    CxjwFileProvider: "com.hylink.qiantang_chexunjingwu.contentprovider.CxjwFileProvider"
-//            ]
-//
-//            buildConfigField("String", "REG_ID", "\"330000101134\"")
-//            buildConfigField("String", "CLIENT_ID", "\"8C4A64D1DED0A2FDDC371F08CC92DA6A\"")
-//
-//        }
-//
-//        浙江测试 {
-//            applicationId "com.hylink.zhejiang_chexunjingwu"
-//            buildConfigField("String", "BASE_URL", "\"http://20.65.1.191:8081/platform/redirect/\"")
-//            buildConfigField("String", "TCP_MQTT", "\"tcp://111.42.38.120:1883\"")
-//            buildConfigField("String", "PGIS_SERVICE", "\"http://20.115.11.64:6080/arcgis/rest/services/whsl/MapServer\"")
-//            manifestPlaceholders = [
-//                    ENTRY_ACTION    : "android.intent.action.MAIN",
-//                    ENTRY_CATEGORY  : "android.intent.category.LAUNCHER",
-//                    APP_NAME        : "浙江测试车巡警务",
-//                    CxjwFileProvider: "com.hylink.zhejiang_chexunjingwu.contentprovider.CxjwFileProvider"
-//            ]
-//
-//            buildConfigField("String", "REG_ID", "\"330000100115\"")
-//            buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
-//
-//        }
     }
 
     android.applicationVariants.all {

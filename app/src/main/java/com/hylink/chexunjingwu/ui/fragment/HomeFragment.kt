@@ -8,7 +8,6 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.dylanc.viewbinding.binding
 import com.google.gson.Gson
-import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.R
 import com.hylink.chexunjingwu.base.BaseVMFragment
 import com.hylink.chexunjingwu.bean.QRcodeInfo
@@ -84,37 +83,12 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
 
         bind.btnNearbyPoliceForces.setOnClickListener(object : OnClickViewListener() {
             override fun onClickSuc(v: View?) {
-
-                when (BuildConfig.FLAVOR) {
-                    "互联网" -> {
-                        government = userInfo.group.code
-                        if (government!!.isEmpty()) return
-                        val intent = Intent()
-                        intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
-                        intent.putExtra("government", government)
-                        startActivity(intent)
-                    }
-                    "浙江" -> {
-                        var code = userInfo?.group?.code
-                        var idCard = userInfo?.idCard
-                        var intent = Intent()
-                        intent.putExtra("code", code)
-                        intent.putExtra("idCard", idCard)
-                        intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
-                        startActivity(intent)
-                    }
-                    "钱塘" -> {
-                        var code = userInfo?.group?.code
-                        var idCard = userInfo?.idCard
-                        var intent = Intent()
-                        intent.putExtra("code", code)
-                        intent.putExtra("idCard", idCard)
-                        intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
-
-
+                government = userInfo.group.code
+                if (government!!.isEmpty()) return
+                val intent = Intent()
+                intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
+                intent.putExtra("government", government)
+                startActivity(intent)
             }
         })
 
