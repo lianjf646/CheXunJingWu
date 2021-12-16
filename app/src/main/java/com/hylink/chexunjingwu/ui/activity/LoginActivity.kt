@@ -8,6 +8,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import cn.com.cybertech.pdk.UserInfo
 import com.dylanc.viewbinding.binding
 import com.hylink.chexunjingwu.BuildConfig
@@ -20,6 +21,7 @@ import com.hylink.chexunjingwu.tools.ZheJiangLog
 import com.hylink.chexunjingwu.tools.showNormal
 import com.hylink.chexunjingwu.viewmodel.LoginViewModel
 import com.permissionx.guolindev.PermissionX
+import kotlinx.coroutines.launch
 
 
 class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
@@ -89,7 +91,7 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
             }
         if (BuildConfig.FLAVOR == "互联网") {
 
-            mViewModel.login("0","0");
+            mViewModel.login("0", "0");
             return
         }
 
@@ -125,19 +127,19 @@ class LoginActivity : BaseViewModelActivity<LoginViewModel>() {
     }
 
     private fun goMainAct(httpResponse: HomeLoginResponse) {
-//                GlobalScope.launch {
-//                   if (bind.chb.isChecked) {
-//                       dataStore.edit { value ->
-//                           value[NUM] = bind.etNum.text.toString()
-//                           value[PASSWORD] = bind.etPassword.text.toString()
-//                           value[IS_REMEMBER] = bind.chb.isChecked
-//                       }
-//                   } else {
-//                       dataStore.edit {
-//                           it.clear()
-//                       }
-//                   }
-//               }
+        lifecycleScope.launch {
+            if (bind.chb.isChecked) {
+                dataStore.edit { value ->
+                    value[NUM] = bind.etNum.text.toString()
+                    value[PASSWORD] = bind.etPassword.text.toString()
+                    value[IS_REMEMBER] = bind.chb.isChecked
+                }
+            } else {
+                dataStore.edit {
+                    it.clear()
+                }
+            }
+        }
 
         if (httpResponse == null) {
             showNormal("未获取到用户信息4")

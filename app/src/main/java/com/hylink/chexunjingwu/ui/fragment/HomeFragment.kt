@@ -85,8 +85,8 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
         bind.btnNearbyPoliceForces.setOnClickListener(object : OnClickViewListener() {
             override fun onClickSuc(v: View?) {
 
-                when {
-                    BuildConfig.FLAVOR.equals("互联网") -> {
+                when (BuildConfig.FLAVOR) {
+                    "互联网" -> {
                         government = userInfo.group.code
                         if (government!!.isEmpty()) return
                         val intent = Intent()
@@ -94,10 +94,7 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
                         intent.putExtra("government", government)
                         startActivity(intent)
                     }
-                    BuildConfig.FLAVOR.equals("乌海") -> {
-
-                    }
-                    BuildConfig.FLAVOR.equals("浙江") -> {
+                    "浙江" -> {
                         var code = userInfo?.group?.code
                         var idCard = userInfo?.idCard
                         var intent = Intent()
@@ -106,7 +103,7 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
                         intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
                         startActivity(intent)
                     }
-                    BuildConfig.FLAVOR.equals("钱塘") -> {
+                    "钱塘" -> {
                         var code = userInfo?.group?.code
                         var idCard = userInfo?.idCard
                         var intent = Intent()

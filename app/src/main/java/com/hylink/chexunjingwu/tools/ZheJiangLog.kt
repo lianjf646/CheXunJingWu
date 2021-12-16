@@ -28,10 +28,6 @@ object ZheJiangLog {
         )
     }
 
-
-
-
-
     private fun saveLog(
         regId: String,
         appKey: String,
