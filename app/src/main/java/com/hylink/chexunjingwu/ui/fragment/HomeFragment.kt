@@ -8,6 +8,7 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import com.dylanc.viewbinding.binding
 import com.google.gson.Gson
+import com.hylink.chexunjingwu.BuildConfig
 import com.hylink.chexunjingwu.R
 import com.hylink.chexunjingwu.base.BaseVMFragment
 import com.hylink.chexunjingwu.bean.QRcodeInfo
@@ -27,6 +28,7 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
     var userInfo: HomeLoginResponse.Data.Data.User =
         DataHelper.getData(DataHelper.loginUserInfo) as HomeLoginResponse.Data.Data.User;
 
+    var government: String? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bind.linearQrcode.setOnClickListener(object : OnClickViewListener() {
@@ -82,24 +84,40 @@ class HomeFragment : BaseVMFragment<HomeFragmentViewModel>(R.layout.fragment_hom
 
         bind.btnNearbyPoliceForces.setOnClickListener(object : OnClickViewListener() {
             override fun onClickSuc(v: View?) {
-//                if (government.isEmpty()) return
-//                val intent = Intent()
-//                if (BuildConfig.FLAVOR.equals("互联网")) {
-//                    intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
-//                } else {
-//                    intent.setClass(activity, NearbyPoliceForcesWuHaiActivity::class.java)
-//                }
-//                intent.putExtra("government", government)
-//                startActivity(intent)
 
-                var code = userInfo?.group?.code
-                var idCard = userInfo?.idCard
-                var intent = Intent()
-                intent.putExtra("code", code)
-                intent.putExtra("idCard", idCard)
-//                intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
-                intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
-                startActivity(intent)
+                when {
+                    BuildConfig.FLAVOR.equals("互联网") -> {
+                        government = userInfo.group.code
+                        if (government!!.isEmpty()) return
+                        val intent = Intent()
+                        intent.setClass(activity, NearbyPoliceForcesActivity::class.java)
+                        intent.putExtra("government", government)
+                        startActivity(intent)
+                    }
+                    BuildConfig.FLAVOR.equals("乌海") -> {
+
+                    }
+                    BuildConfig.FLAVOR.equals("浙江") -> {
+                        var code = userInfo?.group?.code
+                        var idCard = userInfo?.idCard
+                        var intent = Intent()
+                        intent.putExtra("code", code)
+                        intent.putExtra("idCard", idCard)
+                        intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
+                        startActivity(intent)
+                    }
+                    BuildConfig.FLAVOR.equals("钱塘") -> {
+                        var code = userInfo?.group?.code
+                        var idCard = userInfo?.idCard
+                        var intent = Intent()
+                        intent.putExtra("code", code)
+                        intent.putExtra("idCard", idCard)
+                        intent.setClass(activity, ZheJiangNearbyPoliceForcesActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+
+
             }
         })
 
