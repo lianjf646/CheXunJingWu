@@ -154,7 +154,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.hylink.chexunjingwu.ui.activity.PersonnelInfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name="com.hylink.chexunjingwu.ui.activity.CarInfoActivity"
             android:screenOrientation="portrait" />

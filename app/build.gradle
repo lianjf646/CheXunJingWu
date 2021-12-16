@@ -98,10 +98,7 @@ android {
             ]
             buildConfigField("String", "REG_ID", "\"330000100115\"")
             buildConfigField("String", "CLIENT_ID", "\"35D6F3BCDDC05176A39352D7F2747657\"")
-
         }
-
-
     }
 
     android.applicationVariants.all {
