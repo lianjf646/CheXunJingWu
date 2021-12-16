@@ -1,17 +1,13 @@
 package com.hylink.chexunjingwu.ui.activity
 
 import android.Manifest
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import cn.com.cybertech.pdk.PushMessage
 import com.blankj.utilcode.util.NotificationUtils
 import com.dylanc.viewbinding.binding
 import com.hylink.chexunjingwu.R
@@ -22,7 +18,6 @@ import com.hylink.chexunjingwu.http.response.HomeLoginResponse
 import com.hylink.chexunjingwu.tools.DataHelper
 import com.hylink.chexunjingwu.ui.fragment.HomeFragment
 import com.hylink.chexunjingwu.ui.fragment.MineFragment
-import com.hylink.chexunjingwu.util.PushBroadcastReceiver
 import com.permissionx.guolindev.PermissionX
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
@@ -43,18 +38,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-    private var pushReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            var action = intent!!.action
-            if (PushMessage.buildupBroadcastAction4PushMessage(packageName).equals(action)) {
-                var message: PushMessage? = intent.getParcelableExtra(PushMessage.KEY_MESSAGE);
 
-                if (message == null) return
-                if (DataHelper.imei.isNullOrEmpty()) return
-                PushBroadcastReceiver.messageArrived(message!!.messageType, message!!.message)
-            }
-        }
-    }
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -75,9 +59,6 @@ class MainActivity : BaseActivity() {
             }
         }
 
-//        var filter = IntentFilter();
-//        filter.addAction(PushMessage.buildupBroadcastAction4PushMessage(getPackageName()))
-//        registerReceiver(pushReceiver, filter)
 
         val mExecutor = Executors.newSingleThreadScheduledExecutor()
         var mFuture: ScheduledFuture<*>? = null
@@ -129,9 +110,7 @@ class MainActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-//        if (pushReceiver != null) {
-//            unregisterReceiver(pushReceiver)
-//        }
+
     }
 
 

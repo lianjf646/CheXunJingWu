@@ -219,7 +219,6 @@
             android:textColor="#162D5A"
             android:textSize="@dimen/sp_20"
             android:visibility="invisible" />
-
     </LinearLayout>
 
 </LinearLayout>
