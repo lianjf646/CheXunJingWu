@@ -64,7 +64,6 @@ android {
      */
     productFlavors {
 
-
         互联网 {
             applicationId "com.hylink.chexunjingwu"
             versionCode 16
@@ -147,7 +146,7 @@ android {
             variant.outputs.all {
 //                variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + '/outputs/' + versionName)  //指定apk输出目录
                 //这里修改apk文件名
-                outputFileName = "czxk_v${versionName}.${variant.buildType.getName()}.vc${versionCode}.apk"
+                outputFileName = "czxk.v${versionName}.${variant.buildType.getName()}.vc${versionCode}.apk"
             }
     }
 
