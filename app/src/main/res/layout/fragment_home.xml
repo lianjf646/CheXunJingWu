@@ -10,7 +10,6 @@
         android:layout_height="@dimen/dp_410"
         android:background="@drawable/bg_home_heard">
 
-
         <TextView
             android:id="@+id/tv_caron"
             android:layout_width="wrap_content"
